@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Papa
 ========================
 
@@ -17,3 +18,9 @@ Preferences:
 ________________________
 
 License
+=======
+RECIPES
+["controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "saas", "setup", "testing", "views"]
+PREFERENCES
+{:git=>true, :railsapps=>"rails3-bootstrap-devise-cancan", :database=>"sqlite", :unit_test=>"rspec", :integration=>"cucumber", :fixtures=>"factory_girl", :frontend=>"bootstrap", :bootstrap=>"sass", :email=>"gmail", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :starter_app=>"admin_app", :form_builder=>"simple_form", :quiet_assets=>true, :local_env_file=>true, :better_errors=>true, :dev_webserver=>"thin", :prod_webserver=>"unicorn", :templates=>"haml", :continuous_testing=>"none"}
+>>>>>>> 7782feb29def7f3873a9fe9904f2d6eb91821e91

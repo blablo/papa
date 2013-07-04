@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+<<<<<<< HEAD
 //= require bootstrap
 //= require jquery_nested_form
 //= require jquery.currency.min
+=======
+>>>>>>> 7782feb29def7f3873a9fe9904f2d6eb91821e91
 //= require_tree .

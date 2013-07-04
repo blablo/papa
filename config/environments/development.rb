@@ -13,6 +13,7 @@ Papa::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+<<<<<<< HEAD
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
@@ -32,6 +33,10 @@ Papa::Application.configure do
   }
 
 
+=======
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+>>>>>>> 7782feb29def7f3873a9fe9904f2d6eb91821e91
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
