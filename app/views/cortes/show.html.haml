@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @corte.user_id
+
+= link_to 'Edit', edit_corte_path(@corte)
+\|
+= link_to 'Back', cortes_path

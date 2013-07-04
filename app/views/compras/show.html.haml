@@ -1,0 +1,12 @@
+%h1 Compra
+
+%p
+  %strong Name:
+  = @compra.name
+
+%p
+  = link_to "Edit", edit_compra_path(@compra)
+  |
+  = link_to "Destroy", @compra, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", compras_path

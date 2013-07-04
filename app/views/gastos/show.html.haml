@@ -1,0 +1,21 @@
+Gasto
+
+%p
+  %strong Compra:
+  = @gasto.compra_id
+%p
+  %strong Volumen:
+  = @gasto.volumen
+%p
+  %strong Precio:
+  = @gasto.precio
+%p
+  %strong Fecha:
+  = @gasto.fecha
+
+%p
+  = link_to "Edit", edit_gasto_path(@gasto)
+  |
+  = link_to "Destroy", @gasto, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", gastos_path

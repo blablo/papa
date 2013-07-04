@@ -11,7 +11,70 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510023202) do
+ActiveRecord::Schema.define(:version => 20130703194312) do
+
+  create_table "compra_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "compras", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "avatar"
+    t.string   "medida"
+    t.integer  "compra_category_id"
+    t.integer  "corte_id"
+  end
+
+  create_table "cortes", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.decimal  "total_gastos", :precision => 10, :scale => 0
+    t.decimal  "total_venta",  :precision => 10, :scale => 0
+    t.decimal  "caja",         :precision => 10, :scale => 0
+  end
+
+  create_table "gastos", :force => true do |t|
+    t.integer  "compra_id"
+    t.float    "volumen"
+    t.decimal  "precio",     :precision => 10, :scale => 0
+    t.datetime "fecha"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "nota"
+    t.integer  "corte_id"
+  end
+
+  create_table "product_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "avatar"
+    t.string   "ancestry"
+  end
+
+  add_index "product_categories", ["ancestry"], :name => "index_product_categories_on_ancestry"
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price",               :precision => 10, :scale => 0
+    t.integer  "product_category_id"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
+    t.string   "avatar"
+  end
+
+  create_table "receta", :force => true do |t|
+    t.integer  "compra_id"
+    t.integer  "product_id"
+    t.decimal  "cantidad",   :precision => 10, :scale => 0
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +86,26 @@ ActiveRecord::Schema.define(:version => 20130510023202) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "sale_lines", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "sale_id"
+    t.decimal  "precio",     :precision => 10, :scale => 0
+    t.integer  "cantidad"
+    t.decimal  "descuento",  :precision => 10, :scale => 0
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.decimal  "valor",      :precision => 10, :scale => 0
+  end
+
+  create_table "sales", :force => true do |t|
+    t.integer  "cliente_id"
+    t.integer  "seller_id"
+    t.integer  "corte_id"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.decimal  "total",      :precision => 10, :scale => 0
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

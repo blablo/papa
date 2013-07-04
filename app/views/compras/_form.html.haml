@@ -1,0 +1,17 @@
+= form_for @compra do |f|
+  %p
+    = f.label :name
+    = f.text_field :name
+  %p
+    = f.label 'Unidad de Medición'
+    = f.text_field :medida
+  %p
+    =f.label :compra_category_id
+    =f.select :compra_category_id, CompraCategory.all.collect {|p| [ p.name, p.id ]}
+
+  %p
+    = f.label :avatar
+    =f.file_field :avatar
+    =f.hidden_field :avatar_cache
+  %p
+    = f.submit

@@ -1,0 +1,168 @@
+
+
+
+=nested_form_for @sale, :html => {:class => 'sale_form'} do |f|
+
+  .row
+    .span2
+      %h1 Venta
+    .span8
+      =f.label :cliente_id, :class => "pull-left"
+      =f.number_field :cliente_id, :class => "pull-left"
+      =f.hidden_field :total
+  %br
+
+  .row
+    .span7
+      #sale_list
+        .row.sale_head
+          .span2
+            Artículo
+          .span1.center_text
+            Precio
+          .span1.center_text
+            Cant.
+          .span1.center_text
+            Valor
+
+
+
+        =f.fields_for :sale_lines do |line_form|
+          .span2.p_name
+            blabla
+          .span1.precio.center_text
+            $12.00
+          .span1.cantidad.center_text
+            3
+          .span1.valor.center_text
+            $23
+          .span1
+            =line_form.hidden_field :product_id, :class => "f_product"
+            =line_form.hidden_field :precio, :class => "f_precio"
+            =line_form.hidden_field :cantidad, :class => "f_cantidad"
+            =line_form.hidden_field :valor, :class => "f_valor"
+            =line_form.link_to_remove "X"
+
+
+        =f.link_to_add "Add a task", :sale_lines, :style => "display: none"
+
+      .total Total: <span>0.0</span>
+
+    #numpad.span3
+      %table
+        %tr
+          %td{:colspan=>"4"}
+            =text_field_tag 'display'
+        %tr
+          %td{:colspan=>"2"}
+            %button.btn.btn-large.empty_display{:type=>"button"} CE
+          %td
+            %button.btn.btn-large{:type=>"button"} *
+          %td
+            %button.btn.btn-large.minus{:type=>"button"} -
+        %tr
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 7
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 8
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 9
+          %td{:rowspan=>"2"}
+            %button.btn.btn-large.double.plus{:type=>"button"} +
+        %tr
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 4
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 5
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 6
+        %tr
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 1
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 2
+          %td
+            %button.btn.btn-large.number{:type=>"button"} 3
+          %td{:rowspan=>"2"}
+            %button.btn.btn-large.double{:type=>"button", :onclick => "$('#pago_modal').modal('show')"} =
+
+        %tr
+          %td{:colspan=>"2"}
+            %button.btn.btn-large.number{:type=>"button"} 0
+          %td
+            %button.btn.btn-large.punto{:type=>"button"} .
+
+
+
+
+
+  .row
+    #menu_list.span10
+      .main_menu
+        %h2 Menu
+        %ul.thumbnails
+          -@product_categories.each do |pc|
+            %li.span2{:id => "main" + pc.id.to_s, :rel => pc.id }
+              .thumbnail
+                =image_tag(pc.avatar_url(:thumb), :class => 'img-polaroid')
+                =pc.name
+
+      -@product_categories.each do |pc|
+        %div{:class => "submenu pc" + pc.id.to_s}
+          %h2
+            =pc.name
+
+          %ul.thumbnails
+            %li.span2
+              %button.btn.btn-large.back_main{:type=>"button"}=image_tag('icons/up.png') + " Regresar"
+            -pc.products.each do |product|
+              %li.span2
+                .thumbnail{:name => product.name, :price => product.price, :product_id => product.id}
+                  =image_tag(product.avatar_url(:thumb), :class => 'img-polaroid')
+                  =product.name
+
+#pago_modal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3 Pago
+  .modal-body
+    #moneypad
+      .total.pull-left
+        Total: <span>$0.0 </span>
+      .clearfix
+      %table
+        %tr
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $500
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $200
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $100
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $50
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $20
+        %tr
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $10
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $5
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $2
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $1
+          %td
+            %button.btn.btn-large.number{:type=>"button"} $0.50
+        %tr
+          %td{:colspan=>"2"}
+            %button.btn.btn-large.empty_money{:type=>"button"} CE
+      .dado.pull-left
+        Dado: <span>$0.0</span>
+      .cambio.pull-right
+        Cambio: <span>$0.0</span>
+      .clearfix
+
+
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cerrar
+    %button.btn.btn-primary{:onclick => "$(this).hide(); $('.sale_form').submit();"} OK

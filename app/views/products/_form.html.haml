@@ -1,0 +1,19 @@
+= form_for @product do |f|
+
+  %p
+    = f.label :name
+    = f.text_field :name
+  %p
+    = f.label :price
+    = f.text_field :price
+  %p
+    = f.label :product_category_id
+    =f.select :product_category_id, ProductCategory.all.collect {|p| [ p.name, p.id ] }
+
+  %p
+    = f.label :avatar
+    =f.file_field :avatar
+    =f.hidden_field :avatar_cache
+
+  %p
+    = f.submit

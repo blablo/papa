@@ -1,0 +1,13 @@
+%h1 Compra Categories
+
+%table
+  %tr
+    %th Name
+  - for compra_category in @compra_categories
+    %tr
+      %td= compra_category.name
+      %td= link_to 'Show', compra_category
+      %td= link_to 'Edit', edit_compra_category_path(compra_category)
+      %td= link_to 'Destroy', compra_category, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Compra Category", new_compra_category_path

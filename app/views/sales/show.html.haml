@@ -1,0 +1,18 @@
+%h1 Sale
+
+%p
+  %strong Cliente:
+  = @sale.cliente_id
+%p
+  %strong Seller:
+  = @sale.seller_id
+%p
+  %strong Corte:
+  = @sale.corte_id
+
+%p
+  = link_to "Edit", edit_sale_path(@sale)
+  |
+  = link_to "Destroy", @sale, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", sales_path

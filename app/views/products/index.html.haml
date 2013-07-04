@@ -1,0 +1,18 @@
+%h1 Products
+
+%table.table.table-stripped.table-bordered
+  %tr
+    %th{:colspan => "2"} Nombre
+    %th Categoría
+    %th Precio
+    %th
+  - for product in @products
+    %tr
+      %td{:width => "50px"}= image_tag(product.avatar.url(:thumb), :width => "50px")
+      %td= product.name
+      %td= product.product_category.name.capitalize if product.product_category
+      %td= number_to_currency(product.price)
+      %td= link_to 'Edit', edit_product_path(product)
+      %td= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Product", new_product_path

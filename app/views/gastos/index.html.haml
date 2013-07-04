@@ -1,0 +1,19 @@
+%h1 Lista de Gastos
+
+%table.table.table-stripped.table-bordered
+  %tr
+    %th Compra
+    %th Volumen
+    %th Precio
+    %th Fecha
+  - for gasto in @gastos
+    %tr
+      %td= gasto.compra_id
+      %td= gasto.volumen
+      %td= gasto.precio
+      %td= gasto.fecha
+      %td= link_to 'Show', gasto
+      %td= link_to 'Edit', edit_gasto_path(gasto)
+      %td= link_to 'Destroy', gasto, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Gasto", new_gasto_path

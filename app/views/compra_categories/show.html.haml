@@ -1,0 +1,12 @@
+%h1 Compra Category
+
+%p
+  %strong Name:
+  = @compra_category.name
+
+%p
+  = link_to "Edit", edit_compra_category_path(@compra_category)
+  |
+  = link_to "Destroy", @compra_category, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", compra_categories_path

@@ -1,0 +1,61 @@
+%h1 Listing cortes
+
+
+.span4
+  %table.table
+    %tr
+      %th{:colspan => 2} Ventas
+    -@sales.each do |sale|
+      %tr
+        %td=sale.sale_names
+        %td=number_to_currency(sale.total)
+
+.span4
+  %table.table
+    %tr
+      %th{:colspan => 2} Gastos
+    -@gastos.each do |gasto|
+      %tr
+        %td=gasto.name
+        %td=number_to_currency(gasto.precio)
+
+.clearfix
+
+.span8
+  .pull-right{:style => 'text-align: right;'}
+    Venta: 
+    =number_to_currency(@sales.sum(:total))
+    %br
+    Gastos: 
+    =number_to_currency(@gastos.sum(:precio))
+    %br
+    Caja:
+    -if @corte_anterior
+      =number_to_currency(@sales.sum(:total)-@gastos.sum(:precio)+@corte_anterior.caja)
+    -else
+      =number_to_currency(@sales.sum(:total)-@gastos.sum(:precio))
+    %br
+    =form_for @corte, :html => { :class => 'pull-right' } do |f|
+      =f.text_field :caja, :placeholder => '¿Cuánto se queda en caja?'
+      %br
+      =f.submit 'Hacer Corte'
+
+.span8
+  %table.table
+    %tr
+      %th Día
+      %th Ventas
+      %th Gastos
+      %th Caja
+
+    - @cortes.each do |corte|
+      %tr
+        %td=corte.created_at
+        %td=number_to_currency corte.total_venta
+        %td=number_to_currency corte.total_gastos
+        %td=number_to_currency corte.caja
+
+
+.clearfix
+
+= link_to 'New Corte', new_corte_path

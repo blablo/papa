@@ -1,0 +1,19 @@
+%h1 Product Categories
+
+%ul.thumbnails
+  -@product_categories.each do |product_category|
+    %li.span2
+      .thumbnail
+        =image_tag(product_category.avatar_url(:thumb), :class => 'img-polaroid')
+        =link_to(raw('<i class="icon-trash"></i>'), product_category, :confirm => 'Are you sure?', :method => :delete, :class => "pull-right")
+        =link_to(raw('<i class="icon-edit"></i>'), edit_product_category_path(product_category), :class => "pull-right")
+        =product_category.parent.name + '-' if product_category.parent
+        =product_category.name
+
+
+
+
+
+%p= link_to "New Product_Category", new_product_category_path
+
+

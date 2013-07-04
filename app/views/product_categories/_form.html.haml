@@ -1,0 +1,18 @@
+= form_for @product_category do |f|
+
+  %p
+    = f.label :name
+    = f.text_field :name
+  %p
+    = f.label :parent_id
+    -if @product_category.id.nil?
+      =f.select :parent_id, ProductCategory.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Ninguna'}
+    -else
+      =f.select :parent_id, ProductCategory.all.collect {|p| [ p.name, p.id ] unless p.id == @product_category.id }, {:include_blank => 'Ninguna'}
+  %p
+    = f.label :avatar
+    =f.file_field :avatar
+    =f.hidden_field :avatar_cache
+  %p
+
+    = f.submit

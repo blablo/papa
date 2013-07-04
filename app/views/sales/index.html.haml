@@ -1,0 +1,22 @@
+%h1 Sales
+
+%table.table.bordered-table
+  %tr
+    %th Día
+    %th Total
+  - for sale in @sales
+    %tr
+      %td= sale.created_at.strftime("%d/%m/%Y %H:%M")
+      %td= sale.total
+      %td= link_to 'Show', sale
+      %td= link_to 'Edit', edit_sale_path(sale)
+      %td= link_to 'Destroy', sale, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Sale", new_sale_path
+
+
+
+
+
+
+

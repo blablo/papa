@@ -1,0 +1,15 @@
+%h1 Product Category
+
+%p
+  %strong Name:
+  = @product_category.name
+%p
+  %strong Parent:
+  = @product_category.parent_id
+
+%p
+  = link_to "Edit", edit_product_category_path(@product_category)
+  |
+  = link_to "Destroy", @product_category, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", product_categories_path
