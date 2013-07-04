@@ -1,5 +1,5 @@
 Papa::Application.routes.draw do
-<<<<<<< HEAD
+
 
   resources :cortes
 
@@ -26,7 +26,7 @@ Papa::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
-=======
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -83,5 +83,5 @@ Papa::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
->>>>>>> 7782feb29def7f3873a9fe9904f2d6eb91821e91
+
 end

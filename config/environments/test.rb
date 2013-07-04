@@ -34,11 +34,8 @@ Papa::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-<<<<<<< HEAD
-
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
 
-=======
->>>>>>> 7782feb29def7f3873a9fe9904f2d6eb91821e91
+
 end

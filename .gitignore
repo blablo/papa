@@ -38,10 +38,7 @@ db/*.sqlite3
 /doc/features.html
 /doc/specs.html
 /public/cache
-<<<<<<< HEAD
 /public/uploads
-=======
->>>>>>> 7782feb29def7f3873a9fe9904f2d6eb91821e91
 /public/stylesheets/compiled
 /public/system/*
 /spec/tmp/*
@@ -76,11 +73,10 @@ pickle-email-*.html
 
 # vim artifacts
 **.swp
-<<<<<<< HEAD
+
 
 # Ignore application configuration
 /config/application.yml
 
 *~
-=======
->>>>>>> 7782feb29def7f3873a9fe9904f2d6eb91821e91
+
