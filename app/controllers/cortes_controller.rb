@@ -2,9 +2,9 @@ class CortesController < ApplicationController
   # GET /cortes
   # GET /cortes.json
   def index
-    @cortes = Corte.all
+    @cortes = Corte.order('created_at desc').limit(8)
     @sales = Sale.no_corte
-    @gastos = Gasto.no_corte
+    @gastos = Gasto.no_corte_caja
     @corte = Corte.new
     @corte_anterior = Corte.last rescue nil
 
@@ -18,7 +18,8 @@ class CortesController < ApplicationController
   # GET /cortes/1.json
   def show
     @corte = Corte.find(params[:id])
-
+    @sales = @corte.sales
+    @gastos = @corte.gastos
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @corte }
@@ -46,7 +47,7 @@ class CortesController < ApplicationController
   def create
     @corte = Corte.new(params[:corte])
     @sales = Sale.no_corte
-    @gastos = Gasto.no_corte
+    @gastos = Gasto.no_corte_caja
 
     @corte.total_venta = @sales.sum(:total)
     @corte.total_gastos = @gastos.sum(:precio)

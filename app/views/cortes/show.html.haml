@@ -1,9 +1,21 @@
 %p#notice= notice
 
-%p
-  %b User:
-  = @corte.user_id
+.span4
+  %table.table
+    %tr
+      %th{:colspan => 2} Ventas
+    -@sales.each do |sale|
+      %tr
+        %td=sale.sale_names
+        %td=number_to_currency(sale.total)
 
-= link_to 'Edit', edit_corte_path(@corte)
-\|
-= link_to 'Back', cortes_path
+.span4
+  %table.table
+    %tr
+      %th{:colspan => 2} Gastos
+    -@gastos.each do |gasto|
+      %tr
+        %td=gasto.name
+        %td=number_to_currency(gasto.precio)
+
+.clearfix

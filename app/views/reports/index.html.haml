@@ -1,0 +1,16 @@
+%h2=number_to_currency(@saldo)
+
+
+%table.table
+  %tr
+    %th Día
+    %th Ventas
+    %th Gastos
+    %th Caja
+
+  - @cortes.each do |corte|
+    %tr
+      %td=link_to corte.created_at.strftime("%d/%m/%Y %H:%M"), corte
+      %td=number_to_currency corte.total_venta
+      %td=number_to_currency corte.total_gastos
+      %td=number_to_currency corte.caja

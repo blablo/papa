@@ -20,6 +20,11 @@
     %p
       =f.label :nota
       =f.text_field :nota
+    
+
+    %label.checkbox{ :for => "gasto_es_caja"}
+      =f.check_box :es_caja, :checked => true
+      Gasto de caja
 
     =f.hidden_field :compra_id 
   .clearfix

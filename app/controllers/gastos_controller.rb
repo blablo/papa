@@ -22,11 +22,13 @@ class GastosController < ApplicationController
   def create
     @gasto = Gasto.new(params[:gasto])
 
+    respond_to do |format|
 
     if @gasto.save
-      redirect_to @gasto, :notice => "Successfully created gasto."
+      format.js { render :js => "$('#new_gasto').modal('hide');"}
     else
       render :action => 'new'
+    end
     end
   end
 

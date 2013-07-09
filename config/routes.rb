@@ -20,6 +20,10 @@ Papa::Application.routes.draw do
 
   resources :ventas
 
+  resources :recetas
+  
+  resources :reports
+
   authenticated :user do
     root :to => 'home#index'
   end
