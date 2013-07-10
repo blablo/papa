@@ -3,6 +3,15 @@ $(document).on "nested:fieldAdded", (event) ->
   dateField = field.find(".product_id")
   console.log dateField
 
+$(document).on "nested:fieldRemoved", (event) ->
+  field = event.field
+  field.remove()
+  $(".total span").html(getTotal())
+  $("#moneypad .dado span").html(getTotal())
+  $(".total span").formatCurrency()
+  $("#moneypad .dado span").formatCurrency()
+
+
 getTotal = ->
   sum = 0
   $(".f_valor").each ->
