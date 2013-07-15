@@ -1,6 +1,6 @@
 %h2=number_to_currency(@saldo)
 
-
+%h3 Cortes
 %table.table
   %tr
     %th Día
@@ -14,3 +14,32 @@
       %td=number_to_currency corte.total_venta
       %td=number_to_currency corte.total_gastos
       %td=number_to_currency corte.caja
+
+  %tr
+    %th
+    %th=number_to_currency @cortes.sum(:total_venta)
+    %th=number_to_currency @cortes.sum(:total_gastos)
+    %th
+
+
+%h3 Gastos
+%table.table
+  %tr
+    %th Día
+    %th Gasto
+    %th Precio
+    %th Volumen
+
+
+  - @gastos.each do |gasto|
+    %tr
+      %td=link_to gasto.created_at.strftime("%d/%m/%Y %H:%M"), gasto
+      %td=gasto.compra.name
+      %td=number_to_currency gasto.precio
+      %td
+        =gasto.volumen
+        =gasto.compra.medida
+
+  %tr
+    %th
+    %th=number_to_currency @gastos.sum(:precio)
