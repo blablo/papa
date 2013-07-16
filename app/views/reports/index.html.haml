@@ -34,7 +34,9 @@
   - @gastos.each do |gasto|
     %tr
       %td=link_to gasto.created_at.strftime("%d/%m/%Y %H:%M"), gasto
-      %td=gasto.compra.name
+      %td
+        =gasto.compra.name
+        %small="("+gasto.nota+")" unless gasto.nota.blank?
       %td=number_to_currency gasto.precio
       %td
         =gasto.volumen

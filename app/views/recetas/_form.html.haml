@@ -1,0 +1,13 @@
+=nested_form_for @receta do  |f|
+  =f.label "producto"
+  =f.select :product_id, @productos_no_receta.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Ninguna'}
+
+
+  =f.fields_for :receta_lines do |rform| 
+    =rform.select :compra_id, Compra.all.collect {|p| [ p.name + " - " + p.medida, p.id ] }, {:include_blank => 'Ninguna'}
+    =rform.text_field :cantidad
+    =rform.link_to_remove "X"
+  %br
+  %p=f.link_to_add "Agregar Ingrediente", :receta_lines
+  %br
+  =f.submit

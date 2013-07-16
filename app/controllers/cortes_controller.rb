@@ -1,4 +1,5 @@
 class CortesController < ApplicationController
+load_and_authorize_resource
   # GET /cortes
   # GET /cortes.json
   def index
@@ -7,6 +8,23 @@ class CortesController < ApplicationController
     @gastos = Gasto.no_corte_caja
     @corte = Corte.new
     @corte_anterior = Corte.last rescue nil
+
+    @recetas = { }
+
+    @sales.each do |sale|
+      sale.sale_lines.each do |line|
+        if line.product and line.product.receta
+          line.product.receta.receta_lines.each do |receta|
+            if @recetas[receta.compra.name].blank?
+              @recetas[receta.compra.name] = receta.cantidad * line.cantidad
+            else
+              @recetas[receta.compra.name] += receta.cantidad * line.cantidad
+            end
+          end
+        end
+      end
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,6 +38,23 @@ class CortesController < ApplicationController
     @corte = Corte.find(params[:id])
     @sales = @corte.sales
     @gastos = @corte.gastos
+
+    @recetas = { }
+
+    @sales.each do |sale|
+      sale.sale_lines.each do |line|
+        if line.product and line.product.receta
+          line.product.receta.receta_lines.each do |receta|
+            if @recetas[receta.compra.name].blank?
+              @recetas[receta.compra.name] = receta.cantidad * line.cantidad
+            else
+              @recetas[receta.compra.name] += receta.cantidad * line.cantidad
+            end
+          end
+        end
+      end
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @corte }
@@ -53,7 +88,12 @@ class CortesController < ApplicationController
     @corte.total_gastos = @gastos.sum(:precio)
 
     respond_to do |format|
+      
       if @corte.save
+        if @corte.fecha.blank?
+          @corte.upadte_attribute(:fecha, @corte.created_at)
+        end
+
         @sales.each do |sale|
           sale.update_attribute(:corte_id, @corte.id)
         end

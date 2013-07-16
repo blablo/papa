@@ -1,4 +1,5 @@
 class GastosController < ApplicationController
+load_and_authorize_resource
   def index
     @gastos = Gasto.all
   end

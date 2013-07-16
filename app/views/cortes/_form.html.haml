@@ -3,6 +3,8 @@
 
   .form-inputs
     = f.input :user_id
+    -if current_user and current_user.has_role? :admin
+      = f.input :fecha
 
   .form-actions
     = f.button :submit

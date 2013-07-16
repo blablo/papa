@@ -1,0 +1,19 @@
+%h1 Recetas
+
+%table.table
+  %tr
+    %th Producto
+    %th Ingredientes
+    %th
+    %th
+  -@recetas.each do |receta|
+    %tr
+      %td=receta.product.name
+      %td
+        %ul
+          -receta.receta_lines.each do |line|
+            %li=line.compra.name + " - " + line.cantidad.to_s
+      %td=link_to 'Edit', edit_receta_path(receta)
+      %td=link_to 'Destroy', receta, :confirm => 'Are you sure?', :method => :delete
+
+=link_to("Nueva Receta", new_receta_url)

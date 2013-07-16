@@ -36,7 +36,7 @@ $(document).ready ->
     $("#sale_list .fields :last").parent().parent().find(".p_name").html($(this).attr('name'))
     $("#sale_list .fields :last").parent().parent().find(".f_precio").val($(this).attr('price'))
     $("#sale_list .fields :last").parent().parent().find(".f_product").val($(this).attr('product_id'))
-    cantidad = parseInt($("#display").val())
+    cantidad = parseFloat($("#display").val())
     cantidad = 1  if isNaN(cantidad)
     valor = cantidad * parseFloat($(this).attr('price'))
     console.log valor

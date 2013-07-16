@@ -1,25 +1,6 @@
-%h1 Listing cortes
+%h1 Corte
 
-
-.span4
-  %table.table
-    %tr
-      %th{:colspan => 2} Ventas
-    -@sales.each do |sale|
-      %tr
-        %td=sale.sale_names
-        %td=number_to_currency(sale.total)
-
-.span4
-  %table.table
-    %tr
-      %th{:colspan => 2} Gastos
-    -@gastos.each do |gasto|
-      %tr
-        %td=gasto.name
-        %td=number_to_currency(gasto.precio)
-
-.clearfix
+=render 'corte_list'
 
 .span8
   .pull-right{:style => 'text-align: right;'}
@@ -35,10 +16,13 @@
     -else
       =number_to_currency(@sales.sum(:total)-@gastos.sum(:precio))
     %br
-    =form_for @corte, :html => { :class => 'pull-right' } do |f|
-      =f.text_field :caja, :placeholder => '¿Cuánto se queda en caja?'
+    =simple_form_for @corte, :html => { :class => 'pull-right' } do |f|
+      =f.input :caja, :placeholder => '¿Cuánto se queda en caja?'
       %br
-      =f.submit 'Hacer Corte'
+      -if current_user and current_user.has_role? :admin
+        =f.input :fecha
+        %br
+      =f.button :submit, 'Hacer Corte'
 
 .span8
   %table.table
@@ -50,7 +34,7 @@
 
     - @cortes.each do |corte|
       %tr
-        %td=link_to corte.created_at.strftime("%d/%m/%Y %H:%M"), corte
+        %td=link_to corte.fecha.strftime("%d/%m/%Y %H:%M"), corte
         %td=number_to_currency corte.total_venta
         %td=number_to_currency corte.total_gastos
         %td=number_to_currency corte.caja
@@ -58,4 +42,4 @@
 
 .clearfix
 
-= link_to 'New Corte', new_corte_path
+

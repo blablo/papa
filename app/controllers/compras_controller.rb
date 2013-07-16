@@ -1,4 +1,5 @@
 class ComprasController < ApplicationController
+load_and_authorize_resource
   def index
     @compras = Compra.all
   end

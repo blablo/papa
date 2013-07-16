@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
-  
+load_and_authorize_resource
+
   def index
     @cortes = Corte.order('created_at desc')
     @gastos = Gasto.no_corte_no_caja.order('created_at desc')

@@ -6,6 +6,12 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     end
+
+    if user.has_role? :caja
+      can :manage, [Compra, Sale, Corte, Gasto]
+      cannot [:read, :destroy, :update], Sale
+    end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

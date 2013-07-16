@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709010905) do
+ActiveRecord::Schema.define(:version => 20130716024608) do
 
   create_table "compra_categories", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130709010905) do
     t.decimal  "total_gastos", :precision => 10, :scale => 0
     t.decimal  "total_venta",  :precision => 10, :scale => 0
     t.decimal  "caja",         :precision => 10, :scale => 0
+    t.datetime "fecha"
   end
 
   create_table "gastos", :force => true do |t|
@@ -73,9 +74,9 @@ ActiveRecord::Schema.define(:version => 20130709010905) do
     t.integer  "compra_id"
     t.integer  "product_id"
     t.integer  "receta_id"
-    t.decimal  "cantidad",   :precision => 10, :scale => 0
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.float    "cantidad"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "recetas", :force => true do |t|
@@ -99,9 +100,9 @@ ActiveRecord::Schema.define(:version => 20130709010905) do
   create_table "sale_lines", :force => true do |t|
     t.integer  "product_id"
     t.integer  "sale_id"
-    t.decimal  "precio",     :precision => 10, :scale => 0
-    t.integer  "cantidad"
-    t.decimal  "descuento",  :precision => 10, :scale => 0
+    t.float    "precio"
+    t.float    "cantidad"
+    t.float    "descuento"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.decimal  "valor",      :precision => 10, :scale => 0
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20130709010905) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

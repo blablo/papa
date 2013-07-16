@@ -1,4 +1,7 @@
-%h1 Compras
+%h1 
+  Compras
+  -if current_user and current_user.has_role? :admin
+    %small=link_to "New Compra", new_compra_path
 
 %form.navbar-search.pull-left
   %input.search-query{:placeholder => "Busqueda", :type => "text", :id => 'search'}
@@ -19,4 +22,4 @@
 
 =render 'shared/modal', :divid => "new_gasto", :title => "Registrar Compra"
 
-%p= link_to "New Compra", new_compra_path
+
