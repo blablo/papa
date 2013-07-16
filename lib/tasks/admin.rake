@@ -8,4 +8,13 @@ namespace :admin do
     end
   end
 
+
+  task :es_caja => :environment do 
+    Gasto.all.each do |gasto|
+      if gasto.corte_id.nil?
+        gasto.update_attribute(:es_caja, false)
+      end
+    end
+  end
+
 end
