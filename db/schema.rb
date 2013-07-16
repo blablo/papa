@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716024608) do
+ActiveRecord::Schema.define(:version => 20130617181428) do
 
   create_table "compra_categories", :force => true do |t|
     t.string   "name"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20130716024608) do
     t.decimal  "total_gastos", :precision => 10, :scale => 0
     t.decimal  "total_venta",  :precision => 10, :scale => 0
     t.decimal  "caja",         :precision => 10, :scale => 0
-    t.datetime "fecha"
   end
 
   create_table "gastos", :force => true do |t|
@@ -44,11 +43,10 @@ ActiveRecord::Schema.define(:version => 20130716024608) do
     t.float    "volumen"
     t.decimal  "precio",     :precision => 10, :scale => 0
     t.datetime "fecha"
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "nota"
     t.integer  "corte_id"
-    t.boolean  "es_caja",                                   :default => true
   end
 
   create_table "product_categories", :force => true do |t|
@@ -70,22 +68,6 @@ ActiveRecord::Schema.define(:version => 20130716024608) do
     t.string   "avatar"
   end
 
-  create_table "receta_lines", :force => true do |t|
-    t.integer  "compra_id"
-    t.integer  "product_id"
-    t.integer  "receta_id"
-    t.float    "cantidad"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "recetas", :force => true do |t|
-    t.string   "name"
-    t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -100,9 +82,9 @@ ActiveRecord::Schema.define(:version => 20130716024608) do
   create_table "sale_lines", :force => true do |t|
     t.integer  "product_id"
     t.integer  "sale_id"
-    t.float    "precio"
-    t.float    "cantidad"
-    t.float    "descuento"
+    t.integer  "precio"
+    t.integer  "cantidad"
+    t.integer  "descuento"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.decimal  "valor",      :precision => 10, :scale => 0
@@ -131,7 +113,6 @@ ActiveRecord::Schema.define(:version => 20130716024608) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
-    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
