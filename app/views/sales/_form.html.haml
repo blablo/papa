@@ -1,12 +1,20 @@
+
+.row
+  .span2
+    %h1 Venta
+  .span3.cliente_search
+    =form_for(Client.new, :url => search_clients_path, :class => "form-search", :remote => true) do |f|
+      .input-append
+        =text_field_tag "phone", '', :class=>"span2", :id => "appendedInputButtons"
+        =button_tag 'Search', :class => "btn"
+  #cliente.span5
+
+
+
 =nested_form_for @sale, :html => {:class => 'sale_form'} do |f|
 
-  .row
-    .span2
-      %h1 Venta
-    .span8
-      =f.label :cliente_id, :class => "pull-left"
-      =f.number_field :cliente_id, :class => "pull-left"
-      =f.hidden_field :total
+  =f.hidden_field :cliente_id, :id => "client_id"
+  =f.hidden_field :total
 
   .row
     .span7
@@ -32,7 +40,7 @@
             3
           .span1.valor.center_text
             $23
-          .span1
+          .span1.remove
             =line_form.hidden_field :product_id, :class => "f_product"
             =line_form.hidden_field :precio, :class => "f_precio"
             =line_form.hidden_field :cantidad, :class => "f_cantidad"
@@ -162,3 +170,13 @@
   .modal-footer
     %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cerrar
     %button.btn.btn-primary{:onclick => "$(this).hide(); $('.sale_form').submit();"} OK
+
+#new_cliente.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3 Cliente
+  .modal-body
+
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cerrar
+    %button.btn.btn-primary{:onclick => "$(this).hide(); $('#new_cliente form').submit();"} Guardar

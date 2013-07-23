@@ -1,0 +1,36 @@
+.span3{:style => "margin-left: -100px;"}
+  =form_for @client, :html => {:class => "form-horizontal"}, :remote => true do |f|
+    .control-group
+      .control-label
+        =f.label "Tel"
+      .controls
+        =f.text_field :phone
+    .control-group
+      .control-label
+        =f.label "Calle"
+      .controls
+        =f.text_field :street
+    .control-group
+      .control-label
+        =f.label "Calle2"
+      .controls
+        =f.text_field :street2
+    .control-group
+      .control-label
+        =f.label "Colonia"
+      .controls
+        =f.text_field :district
+    .control-group
+      .control-label
+        =f.label "Notas"
+      .controls
+        =f.text_field :note
+    .control-group
+      .control-label
+        =f.label "Nombre"
+      .controls
+        =f.text_field :name
+        =f.hidden_field :latitude
+        =f.hidden_field :longitude
+.span3.pull-right
+  #map-canvas{ :style => "width: 200px; height: 200px"}

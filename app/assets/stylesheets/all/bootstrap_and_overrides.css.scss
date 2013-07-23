@@ -8,3 +8,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 
 .thumbnail > img {
 max-width: 91%;}
+
+#map-canvas img {
+max-width: none;
+}

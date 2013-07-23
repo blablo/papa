@@ -1,6 +1,12 @@
 Papa::Application.routes.draw do
 
 
+  resources :clients do
+collection do 
+     post 'search'
+end
+  end
+
   resources :cortes
 
 

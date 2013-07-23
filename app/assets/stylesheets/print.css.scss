@@ -1,0 +1,42 @@
+#menu_list{
+    display: none;
+}
+
+.navbar{
+    display: none;
+}
+
+#numpad, .nav{
+    display: none;
+}
+
+.content > .row > .span2{
+    display: none;
+}
+
+#new_sale > .row > .span8{
+    display: none;
+}
+
+h1{
+    font-size: 1em;
+}
+.sale_head, .fields{
+    font-size: 0.8em;
+    line-height: 0em;
+    .span2{
+	width: 60px;
+	float: left;
+    }
+    .span1{
+	width: 50px;
+	float: left;
+    }
+    .remove{
+	display: none
+    }
+}
+
+.cliente_search{
+    display: none;
+}

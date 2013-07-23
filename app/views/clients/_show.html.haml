@@ -1,0 +1,19 @@
+.row
+  .span2
+    %strong Teléfono:
+    =@client.phone
+    -if !@client.name.blank?
+      %br
+      %strong Nombre:
+      =@client.name
+    -if !@client.note.blank?
+      %br
+      %strong Nota: 
+      =@client.note 
+
+  .span3
+    %strong Dirección:
+    %br
+    =@client.street
+    %br
+    =@client.street2

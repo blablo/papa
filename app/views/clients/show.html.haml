@@ -1,0 +1,27 @@
+- title "Client"
+
+%p
+  %strong Name:
+  = @client.name
+%p
+  %strong Phone:
+  = @client.phone
+%p
+  %strong Street:
+  = @client.street
+%p
+  %strong Street2:
+  = @client.street2
+%p
+  %strong District:
+  = @client.district
+%p
+  %strong Note:
+  = @client.note
+
+%p
+  = link_to "Edit", edit_client_path(@client)
+  |
+  = link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", clients_path

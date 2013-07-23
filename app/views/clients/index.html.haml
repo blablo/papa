@@ -1,0 +1,23 @@
+%h1 Clients
+
+%table
+  %tr
+    %th Name
+    %th Phone
+    %th Street
+    %th Street2
+    %th District
+    %th Note
+  - for client in @clients
+    %tr
+      %td= client.name
+      %td= client.phone
+      %td= client.street
+      %td= client.street2
+      %td= client.district
+      %td= client.note
+      %td= link_to 'Show', client
+      %td= link_to 'Edit', edit_client_path(client)
+      %td= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Client", new_client_path
