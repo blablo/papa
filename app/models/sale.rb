@@ -1,6 +1,7 @@
 class Sale < ActiveRecord::Base
-  attr_accessible :cliente_id, :seller_id, :corte_id, :total, :sale_lines_attributes
+  attr_accessible :client_id, :seller_id, :corte_id, :total, :sale_lines_attributes, :por_pagar
   has_many :sale_lines, :dependent => :destroy
+  belongs_to :client
 
   accepts_nested_attributes_for :sale_lines
 

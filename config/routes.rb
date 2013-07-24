@@ -10,7 +10,11 @@ end
   resources :cortes
 
 
-  resources :sales
+  resources :sales do
+    member do 
+      get 'pagar'
+    end
+  end
 
   resources :ventas
 

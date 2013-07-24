@@ -22,8 +22,9 @@
 
 =nested_form_for @sale, :html => {:class => 'sale_form'} do |f|
 
-  =f.hidden_field :cliente_id, :id => "client_id"
+  =f.hidden_field :client_id, :id => "client_id"
   =f.hidden_field :total
+  =f.hidden_field :por_pagar
 
   .row
     .span7
@@ -181,9 +182,9 @@
 
 
   .modal-footer
-    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cerrar
     %button.btn{:onclick => "$('.modal').modal('hide'); window.print()"} Imprimir
-    %button.btn.btn-primary{:onclick => "$('.modal').modal('hide'); $('.sale_form').submit();"} OK
+    %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('.modal').modal('hide'); window.print(); $('.sale_form').submit();"}Domicilio
+    %button.btn.btn-primary{:onclick => "$('.modal').modal('hide'); window.print(); $('.sale_form').submit();"} Pagar
 
 #new_cliente.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-header

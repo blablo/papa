@@ -1,7 +1,10 @@
 class SalesController < ApplicationController
 load_and_authorize_resource
   def index
-    @sales = Sale.all
+    @sales = Sale.order('created_at desc')
+    
+    @sales_pagar = Sale.where(:por_pagar => true)
+
   end
 
   def show
@@ -44,6 +47,12 @@ load_and_authorize_resource
     else
       render :action => 'edit'
     end
+  end
+  
+  def pagar
+    @sale = Sale.find(params[:id])
+    @sale.update_attribute(:por_pagar, false)
+    redirect_to sales_url
   end
 
   def destroy

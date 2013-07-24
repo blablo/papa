@@ -1,9 +1,30 @@
 %h1 Sales
 
+-if !@sales_pagar.blank?
+  %h4 Pagos Pendientes
+
+  %table.table.bordered-table
+    %tr
+      %th Día
+      %th Cliente
+      %th Total
+      %th
+    - for sale in @sales_pagar
+      %tr
+        %td= sale.created_at.strftime("%d/%m/%Y %H:%M")
+        %td
+          =sale.client.street if sale.client
+        %td= sale.total
+        %td=link_to("Pagar", pagar_sale_path(sale.id))
+
+
 %table.table.bordered-table
   %tr
     %th Día
     %th Total
+    %th
+    %th
+    %th
   - for sale in @sales
     %tr
       %td= sale.created_at.strftime("%d/%m/%Y %H:%M")
