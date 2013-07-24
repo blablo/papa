@@ -1,13 +1,22 @@
 
 .row
-  .span2
-    %h1 Venta
+  .span2.info_store
+    %h1 Rico Don Pollo
+    Sierra de Mazamitla #5814
+    %br
+    36-32-19-53
+    %br
+    %br
+    Recibo de Venta
+    %br
+    =Time.now.strftime("%d/%m/%Y %H:%M")
+    
   .span3.cliente_search
     =form_for(Client.new, :url => search_clients_path, :class => "form-search", :remote => true) do |f|
       .input-append
         =text_field_tag "phone", '', :class=>"span2", :id => "appendedInputButtons"
         =button_tag 'Search', :class => "btn"
-  #cliente.span5
+  .cliente.span5
 
 
 
@@ -52,6 +61,10 @@
 
       .total Total: <span>0.0</span>
 
+      .p_paga Paga con: <span>0.0</span>
+      .p_cambio Cambio: <span>0.0</span> 
+
+    .cliente.p_cliente
     #numpad.span3
       %table
         %tr
@@ -169,7 +182,8 @@
 
   .modal-footer
     %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cerrar
-    %button.btn.btn-primary{:onclick => "$(this).hide(); $('.sale_form').submit();"} OK
+    %button.btn{:onclick => "$('.modal').modal('hide'); window.print()"} Imprimir
+    %button.btn.btn-primary{:onclick => "$('.modal').modal('hide'); $('.sale_form').submit();"} OK
 
 #new_cliente.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-header

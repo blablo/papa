@@ -2,7 +2,7 @@
     display: none;
 }
 
-.navbar{
+.navbar, .modal{
     display: none;
 }
 
@@ -19,18 +19,29 @@
 }
 
 h1{
-    font-size: 1em;
+    font-size: 1.4em;
+    margin: 0;
+    font-weight: bold;
+    line-height: 1em;
 }
+
 .sale_head, .fields{
-    font-size: 0.8em;
-    line-height: 0em;
+    font-size: 0.6em;
+    line-height: 1.4em;
     .span2{
 	width: 60px;
 	float: left;
+	margin: 0;
     }
     .span1{
 	width: 50px;
 	float: left;
+	text-align: left;
+	margin: 0;
+    }
+    .span2.p_name{
+	margin: 0;
+	width: 70px;
     }
     .remove{
 	display: none
@@ -39,4 +50,43 @@ h1{
 
 .cliente_search{
     display: none;
+}
+
+.print_map{
+    margin: 3px 0;
+    display: block;
+}
+
+#sale_list{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
+    width: 300px;
+    border: none;
+    .fields{
+	padding: 0;
+    }
+}
+
+.total, .p_paga, .p_cambio{
+    font-size: 0.6em;
+    line-height: 1.2em;
+    margin: 0;
+}
+
+.info_store{
+    display: block;
+    font-size: 0.6em;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+.cliente{
+    display: none;
+    font-size: 0.6em;
+    margin-top: 20px;
+}
+
+.p_paga, .p_cambio, .cliente.p_cliente{
+    display: block;
 }

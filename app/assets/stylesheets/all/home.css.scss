@@ -94,7 +94,7 @@
 	display: table;
     }
 }
-.total{
+.total, .p_paga, .p_cambio{
     text-align: right;
     font-size: 1.8em;
     margin-top: 1em;
@@ -108,8 +108,12 @@
     margin-right: 30px;
 }
 
-#cliente{
+.cliente{
     font-size: 0.8em;
     line-height: 1em;
-
 }
+
+.print_map, .info_store, .p_paga, .p_cambio, .p_cliente{
+    display: none;
+}
+

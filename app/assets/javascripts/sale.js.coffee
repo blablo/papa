@@ -16,6 +16,12 @@ getTotal = ->
   sum = 0
   $(".f_valor").each ->
     sum += Number($(this).val())
+  $('.p_paga span').html(sum)
+  $('.p_cambio span').html(0)
+  $(".p_paga span").formatCurrency()
+  $(".p_cambio span").formatCurrency()
+
+ 
   return sum
 
 
@@ -111,6 +117,10 @@ $(document).ready ->
     console.log number2 + " + " + number + " - " + getTotal()
     $("#moneypad .dado span").formatCurrency()
     $("#moneypad .cambio span").formatCurrency()
+    $('.p_paga span').html($("#moneypad .dado span").html())
+    $('.p_cambio span').html($("#moneypad .cambio span").html())
+    
+
 
   $("#moneypad .empty_money").click ->
     $("#moneypad .dado span").html("0")

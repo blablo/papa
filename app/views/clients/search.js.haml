@@ -1,7 +1,9 @@
 -if @client
   $("#new_cliente").modal("hide");
   $("#client_id").val("#{@client.id}")
-  $("#cliente").html("#{escape_javascript(render 'clients/show', :client => @client)}");
+  $(".cliente").html("#{escape_javascript(render 'clients/show', :client => @client)}");
+
+
 -else
   -@client = Client.new
   $("#new_cliente .modal-body").html("#{escape_javascript(render 'clients/form')}");
