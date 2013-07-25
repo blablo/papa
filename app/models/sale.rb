@@ -1,5 +1,5 @@
 class Sale < ActiveRecord::Base
-  attr_accessible :client_id, :seller_id, :corte_id, :total, :sale_lines_attributes, :por_pagar
+  attr_accessible :client_id, :seller_id, :corte_id, :total, :sale_lines_attributes, :por_pagar, :nota
   has_many :sale_lines, :dependent => :destroy
   belongs_to :client
 
