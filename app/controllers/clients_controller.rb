@@ -26,9 +26,7 @@ class ClientsController < ApplicationController
   end
 
   def search
-
     @client = Client.find_by_phone(params[:phone])
-
 
     respond_to do |format|
       format.js
