@@ -39,7 +39,7 @@ function getAddress(){
 
 
 function updateMarkerPosition(latLng) {
-  $('#client_longitude').val(latLng.lat());
-  $('#client_latitude').val(latLng.lng());
+  $('#client_longitude').val(latLng.lng());
+  $('#client_latitude').val(latLng.lat());
 }
 

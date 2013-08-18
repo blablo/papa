@@ -1,9 +1,10 @@
-.modal.hide.fade{:id => divid, "aria-hidden" => "true", "aria-labelledby" => "modalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-header
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h3#modal_label title
-  .modal-body
-    %p One fine body…
-  .modal-footer
-    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cerrar
-    %button.btn.btn-primary{:onclick => "$('.modal-footer .btn-primary').parent().parent().find('form').submit();"} Guardar
+.modal.fade{:id => divid}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Cliente
+      .modal-body
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+        %button.btn.btn-primary{:type => "button", :onclick => "$('.modal-footer .btn-primary').parent().parent().find('form').submit();"} Guardar

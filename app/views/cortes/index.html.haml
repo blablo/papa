@@ -2,7 +2,7 @@
 
 =render 'corte_list'
 
-.span8
+.col-sm-8
   .pull-right{:style => 'text-align: right;'}
     Venta: 
     =number_to_currency(@sales.sum(:total))
@@ -23,8 +23,8 @@
         =f.input :fecha
         %br
       =f.button :submit, 'Hacer Corte'
-
-.span8
+.clearfix
+.col-sm-8
   %table.table
     %tr
       %th Día

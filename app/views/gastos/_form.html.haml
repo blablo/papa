@@ -6,20 +6,20 @@
       =image_tag(@gasto.compra.avatar_url(:thumb), :class => 'img-polaroid')
 
   .pull-right
-    %p
+    .form-group
       = f.label :volumen
-      .input-append
-        =f.number_field :volumen, :id => "appendedInput"
-        %span.add-on=@gasto.compra.medida
+      .input-group
+        =f.number_field :volumen, :class => "form-control"
+        %span.input-group-addon=@gasto.compra.medida
 
-    %p
+    .form-group
       = f.label :precio
-      .input-prepend
-        %span.add-on $
-        =f.text_field :precio, :id =>"prependedInput"
-    %p
+      .input-group
+        %span.input-group-addon $
+        =f.text_field :precio, :class => 'form-control'
+    .form-group
       =f.label :nota
-      =f.text_field :nota
+      =f.text_field :nota, :class => 'form-control'
     
 
     %label.checkbox{ :for => "gasto_es_caja"}

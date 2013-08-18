@@ -28,7 +28,7 @@ getTotal = ->
 $(document).ready ->
   $("#search").keyup ->
     searchTable $(this).val()
-  $("#menu_list .main_menu li").click ->
+  $("#menu_list .main_menu .thumbnail").click ->
     $(".pc" + $(this).attr('rel')).show()
     $(".main_menu").hide()
   $(".back_main").click ->

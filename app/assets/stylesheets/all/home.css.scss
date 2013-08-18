@@ -4,108 +4,113 @@
 
 
 .thumbnail{
-  background: white;
+    background: white;
 }
 
 #menu_list{
     margin-top: 1em;
     background: #ccc;
-    padding: 10px;
-  
-  .submenu{
-      display: none;
-      .thumbnail{
-	  cursor: pointer;
-      }
-  }
+    padding: 3px 10px;
+    padding-top: 0px;
+    .submenu{
+        display: none;
+        .thumbnail{
+            cursor: pointer;
+        }
+    }
 
-  .main_menu li{
-      cursor: pointer;
-  }
-  li.span2{
-      width: 120px;
-  }
-.thumbnails > li {
-    margin-left: 20px;
-}
-.thumbnails {
-    margin-left: -20px;
-}
-
+    .main_menu .thumbnail{
+        cursor: pointer;
+    }
+    li.span2{
+        width: 120px;
+    }
+    .thumbnails > .thumbnail {
+        margin-left: 20px;
+    }
+    .thumbnails {
+        margin-left: -60px;
+    }
+    .thumbnail{
+	overflow: hidden;
+	font-size: 10px;
+    }
 }
 
 #numpad{
+    margin-top: -60px;
     input[type="text"]{
-	height: 45px;
-	width: 254px;
-	margin: 0;
-	font-size: 1.8em;
+        height: 45px;
+        width: 254px;
+        margin: 0;
+        font-size: 1.8em;
     }
 
     button{
-	width: 100%;
+        width: 100%;
     }
     button.double{
-	height: 90px;
+        height: 80px;
     }
+
 }
 
 #pago_modal{
-    width: 436px;
+
 }
 
 #moneypad{
     button{
-	width: 80px;
+        width: 80px;
 
     }
     button.double{
-	height: 126px;
+        height: 126px;
     }
     .btn-large{
-	border-radius: 6px 6px 6px 6px;
-	font-size: 17.5px;
-	padding: 20px 29px;
+        border-radius: 6px 6px 6px 6px;
+        font-size: 17.5px;
+        padding: 20px 29px;
     }
     .empty_money{
-	width: 100%;
+        width: 100%;
     }
     .dado, .cambio{
-	font-size: 1.8em;
-	line-height: 1.5em;
+        font-size: 1.8em;
+        line-height: 1.5em;
     }
 
 }
 
 #sale_list{
-    height: 180px;
+    height: 150px;
     margin-right: -2px;
     border: 1px solid black;
     background: white;
     overflow: auto;
     .sale_head{
-	padding: 5px 10px;
-	font-weight: bold;
-	border-bottom: 1px solid black;
-	margin-left: 0;
+        font-weight: bold;
+        border-bottom: 1px solid black;
     }
     .fields{
-	padding: 5px 10px;
-	display: table;
+        div{
+
+
+        }
     }
 }
 .total, .p_paga, .p_cambio{
     text-align: right;
     font-size: 1.8em;
-    margin-top: 1em;
+
 }
 
 .center_text{
     text-align: center;
 }
 .p_name{
-    margin-left: 0;
-    margin-right: 30px;
+
+
 }
 
 .cliente{
@@ -122,4 +127,15 @@
     margin-top: 0.5em;
     font-size: 0.7em;
     line-height: 1em;
+}
+
+
+.compras_thumbnails{
+    .thumbnail{
+	font-size: 10px;
+	overflow: hidden;
+	height: 200px;
+    }
+
+
 }

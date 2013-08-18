@@ -1,4 +1,4 @@
-.span4
+.col-sm-4
   %table.table
     %tr
       %th{:colspan => 2} Ventas
@@ -7,7 +7,7 @@
         %td=sale.sale_names
         %td=number_to_currency(sale.total)
 
-.span4
+.col-sm-4
   %table.table
     %tr
       %th{:colspan => 2} Gastos
@@ -18,7 +18,7 @@
 
 .clearfix
 
-.span8
+.col-sm-8
   -@recetas.each_pair do |key, value|
     %strong=key.capitalize
     =": " + value.to_s

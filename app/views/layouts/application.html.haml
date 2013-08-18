@@ -12,15 +12,12 @@
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    .navbar.navbar-fixed-top
-      %nav.navbar-inner
-        .container
-          = render 'layouts/navigation'
+    = render 'layouts/navigation'
     #main{:role => "main"}
-      .container
+      .container-fluid
         .content
           .row
-            .span2
+            .col-lg-2.hidden-sm
               %ul.nav.nav-tabs.nav-stacked
                 %li
                   =link_to("Nueva Venta", new_sale_url)
@@ -44,7 +41,7 @@
                   %li
                     =link_to("Cat. Compras", compra_categories_url)
 
-            .span10
+            .col-lg-10
               = render 'layouts/messages'
               = yield
           %footer

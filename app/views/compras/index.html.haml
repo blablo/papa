@@ -8,17 +8,16 @@
 
 .clearfix
 %br
-%ul.thumbnails
+.thumbnails.compras_thumbnails
   -@compras.each do |compra|
-    %li.span2
-      .thumbnail
-        =link_to(image_tag('icons/buy.png'), new_gasto_url + "?compra_id=" + compra.id.to_s, :remote => true, :class=>"icon")
-        =link_to(raw('<i class="icon-trash"></i>'), compra, :confirm => 'Are you sure?', :method => :delete, :class => "pull-right")
-        =link_to(raw('<i class="icon-edit"></i>'), edit_compra_path(compra), :class => "pull-right")
+    .thumbnail.col-sm-2
+      =link_to(image_tag('icons/buy.png'), new_gasto_url + "?compra_id=" + compra.id.to_s, :remote => true, :class=>"icon")
+      =link_to(raw('<i class="icon-trash"></i>'), compra, :confirm => 'Are you sure?', :method => :delete, :class => "pull-right")
+      =link_to(raw('<i class="icon-edit"></i>'), edit_compra_path(compra), :class => "pull-right")
 
-        =link_to(image_tag(compra.avatar_url(:thumb), :class => 'img-polaroid'), new_gasto_url + "?compra_id=" + compra.id.to_s, :remote => true, :class=>"icon")
-        %span=compra.compra_category.name.capitalize + " -"
-        %span=compra.name.capitalize
+      =link_to(image_tag(compra.avatar_url(:thumb), :class => 'img-polaroid'), new_gasto_url + "?compra_id=" + compra.id.to_s, :remote => true, :class=>"icon")
+      %span=compra.compra_category.name.capitalize + " -"
+      %span=compra.name.capitalize
 
 =render 'shared/modal', :divid => "new_gasto", :title => "Registrar Compra"
 
