@@ -120,11 +120,11 @@
 
 
   .row
-    #menu_list.col-lg-12.col-md-12.col-sm-12
+    #menu_list.col-lg-12.col-md-12.col-sm-12.col-xs-12
       .main_menu
         %ul.thumbnails
           -@product_categories.each do |pc|
-            .thumbnail.col-md-1.col-lg-1.col-sm-1{:id => "main" + pc.id.to_s, :rel => pc.id }
+            .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id }
               =image_tag(pc.avatar_url(:thumb), :class => 'img-polaroid')
               =pc.name
 
@@ -133,7 +133,7 @@
 
 
           %ul.thumbnails
-            %li.col-md-2.col-lg-2.col-sm-2
+            %li.col-md-2.col-lg-2.col-sm-2.col-xs-2
               %h3=pc.name
               %button.btn.btn-large.back_main{:type=>"button"}=image_tag('icons/up.png') + " Regresar"
             -pc.products.each do |product|
