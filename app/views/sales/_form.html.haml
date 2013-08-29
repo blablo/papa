@@ -1,6 +1,6 @@
 
 .row
-  .span2.info_store
+  .col-sm-2.info_store
     %h1 Rico Don Pollo
     Sierra de Mazamitla #5814
     %br
@@ -11,13 +11,13 @@
     %br
     =Time.now.strftime("%d/%m/%Y %H:%M")
 
-  .span3.cliente_search
-    =form_for(Client.new, :url => search_clients_path, :class => "form-search", :remote => true) do |f|
-      .input-append
-        =text_field_tag "phone", '', :class=>"span2", :id => "appendedInputButtons"
-        =button_tag 'Search', :class => "btn"
-  .cliente.span5
-
+  .col-sm-3.cliente_search
+    =form_for(Client.new, :url => search_clients_path, :remote => true) do |f|
+      .input-group
+        =text_field_tag "phone", '', :class=>"form-control", :id => "appendedInputButtons"
+        %span.input-group-btn
+          =button_tag 'Search', :class => "btn btn-default", :type => "submit"
+  .cliente.col-sm-5
 
 
 =nested_form_for @sale, :html => {:class => 'sale_form'} do |f|
@@ -29,31 +29,31 @@
   .row
     .col-lg-8.col-md-8.col-sm-8
       #sale_list
-        .col-sm-12
+        .col-xs-12
           .row.sale_head
-            .col-sm-3
+            .col-xs-6
               Artículo
-            .col-sm-1.center_text
+            .col-xs-2.center_text
               Precio
-            .col-sm-1.center_text
+            .col-xs-2.center_text
               Cant.
-            .col-sm-1.center_text
+            .col-xs-2.center_text
               Valor
 
 
 
         =f.fields_for :sale_lines do |line_form|
-          .col-sm-12
+          .col-xs-12
             .row
-              .col-sm-3.p_name
+              .col-xs-6.p_name
                 blabla
-              .col-sm-1.precio.center_text
+              .col-xs-2.precio.center_text
                 $12.00
-              .col-sm-1.cantidad.center_text
+              .col-xs-2.cantidad.center_text
                 3
-              .col-sm-1.valor.center_text
+              .col-xs-2.valor.center_text
                 $23
-              .col-sm-1.remove
+              .col-xs-2.remove
                 =line_form.hidden_field :product_id, :class => "f_product"
                 =line_form.hidden_field :precio, :class => "f_precio"
                 =line_form.hidden_field :cantidad, :class => "f_cantidad"
