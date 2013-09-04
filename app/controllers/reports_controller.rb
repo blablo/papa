@@ -29,8 +29,8 @@ class ReportsController < ApplicationController
           ventas_totales += corte.total_venta
           gastos_totales += corte.total_gastos
           
-          if corte.count_recetas["Pollo"]
-            pollos += corte.count_recetas["Pollo"]
+          if corte.count_recetas["Pollo Crudo"]
+            pollos += corte.count_recetas["Pollo Crudo"]
           end
         end
         @ventas_totales << ventas_totales
