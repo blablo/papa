@@ -22,14 +22,19 @@ class ReportsController < ApplicationController
         @gastos_totales << 0
         @pollos << 0
       else
-        @ventas_totales << cortes.sum(:total_venta)
-        @gastos_totales << cortes.sum(:total_gastos)
+        ventas_totales = 0
+        gastos_totales = 0
         pollos = 0
         cortes.each do |corte|
-          if corte.count_recetas["Pollo Crudo"]
-            pollos += corte.count_recetas["Pollo Crudo"]
+          ventas_totales += corte.total_venta
+          gastos_totales += corte.total_gastos
+          
+          if corte.count_recetas["Pollo"]
+            pollos += corte.count_recetas["Pollo"]
           end
         end
+        @ventas_totales << ventas_totales
+        @gastos_totales << gastos_totales        
         @pollos << pollos
       end
     end

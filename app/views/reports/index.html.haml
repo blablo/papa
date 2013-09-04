@@ -8,7 +8,7 @@
   spacingRight: 20
   },
   title: {
-  text: 'Pollos'
+  text: 'Ventas'
   },
   xAxis: {
   type: 'datetime',
@@ -19,7 +19,7 @@
   },
   yAxis: {
   title: {
-  text: 'Exchange rate'
+  text: 'Dinero'
   }
   },
   tooltip: {
@@ -55,26 +55,77 @@
   type: 'area',
   name: 'Ventas',
   pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@ffirst.strftime("%Y,%m,%d")}),
+  pointStart: Date.UTC(#{@ffirst.year}, #{@ffirst.month-1}, #{@ffirst.day}),
   data: [#{@ventas_totales.join(', ')}]
   },{
   type: 'area',
   name: 'Gastos',
   pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@ffirst.strftime("%Y,%m,%d")}),
+  pointStart: Date.UTC(#{@ffirst.year}, #{@ffirst.month-1}, #{@ffirst.day}),
   data: [#{@gastos_totales.join(', ')}]
-  },{
+  }]
+  });
+  $('#chart2').highcharts({
+  chart: {
+  zoomType: 'x',
+  spacingRight: 20
+  },
+  title: {
+  text: 'Pollos'
+  },
+  xAxis: {
+  type: 'datetime',
+  maxZoom: 14 * 24 * 3600000, // fourteen days
+  title: {
+  text: null
+  }
+  },
+  yAxis: {
+  title: {
+  text: 'Pollos Vendidos'
+  }
+  },
+  tooltip: {
+  shared: true
+  },
+  legend: {
+  enabled: false
+  },
+  plotOptions: {
+  area: {
+  fillColor: {
+  linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+  stops: [
+  [0, Highcharts.getOptions().colors[0]],
+  [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+  ]
+  },
+  lineWidth: 1,
+  marker: {
+  enabled: false
+  },
+  shadow: false,
+  states: {
+  hover: {
+  lineWidth: 1
+  }
+  },
+  threshold: null
+  }
+  },
+  
+  series: [{
   type: 'area',
   name: 'Pollos',
   pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@ffirst.strftime("%Y,%m,%d")}),
+  pointStart: Date.UTC(#{@ffirst.year}, #{@ffirst.month-1}, #{@ffirst.day}),
   data: [#{@pollos.join(', ')}]
   }]
   });
   });
 
 #chart
-
+#chart2
 %h3 Cortes
 %table.table
   %tr
