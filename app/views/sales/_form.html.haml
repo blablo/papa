@@ -121,7 +121,7 @@
 
   .row
     #menu_list.col-lg-12.col-md-12.col-sm-12.col-xs-12
-      .well
+      .main_menu.well
         .thumbnails
           .row
             .col-xs-12
@@ -129,12 +129,12 @@
           .row
             .col-xs-12
               -@product_categories.each do |pc|
-                .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id }
+                .thumbnail.main_thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id }
                   =image_tag(pc.avatar_url(:thumb), :class => 'img-polaroid')
                   =pc.name
 
       -@product_categories.each do |pc|
-        %div{:class => "submenu pc" + pc.id.to_s}
+        %div{:class => "submenu well pc" + pc.id.to_s}
 
 
           .thumbnails

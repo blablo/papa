@@ -16,9 +16,9 @@ load_and_authorize_resource
         if line.product and line.product.receta
           line.product.receta.receta_lines.each do |receta|
             if @recetas[receta.compra.name].blank?
-              @recetas[receta.compra.name] = receta.cantidad * line.cantidad
+              @recetas[receta.compra.name] = receta.cantidad * line.cantidad if receta.cantidad and line.cantidad
             else
-              @recetas[receta.compra.name] += receta.cantidad * line.cantidad
+              @recetas[receta.compra.name] += receta.cantidad * line.cantidad if receta.cantidad and line.cantidad
             end
           end
         end
@@ -46,9 +46,9 @@ load_and_authorize_resource
         if line.product and line.product.receta
           line.product.receta.receta_lines.each do |receta|
             if @recetas[receta.compra.name].blank?
-              @recetas[receta.compra.name] = receta.cantidad * line.cantidad
+              @recetas[receta.compra.name] = receta.cantidad * line.cantidad if receta.cantidad and line.cantidad
             else
-              @recetas[receta.compra.name] += receta.cantidad * line.cantidad
+              @recetas[receta.compra.name] += receta.cantidad * line.cantidad if receta.cantidad and line.cantidad
             end
           end
         end

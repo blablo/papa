@@ -1,27 +1,74 @@
 %h2=number_to_currency(@saldo)
 :javascript
   $(function () { 
+
   $('#chart').highcharts({
   chart: {
-  type: 'line'
+  zoomType: 'x',
+  spacingRight: 20
   },
   title: {
-  text: 'Fruit Consumption'
+  text: 'Pollos'
   },
   xAxis: {
-  categories: [#{@fechas.join(', ')}]
+  type: 'datetime',
+  maxZoom: 14 * 24 * 3600000, // fourteen days
+  title: {
+  text: null
+  }
   },
   yAxis: {
   title: {
-  text: 'Fruit eaten'
+  text: 'Exchange rate'
   }
   },
+  tooltip: {
+  shared: true
+  },
+  legend: {
+  enabled: false
+  },
+  plotOptions: {
+  area: {
+  fillColor: {
+  linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+  stops: [
+  [0, Highcharts.getOptions().colors[0]],
+  [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+  ]
+  },
+  lineWidth: 1,
+  marker: {
+  enabled: false
+  },
+  shadow: false,
+  states: {
+  hover: {
+  lineWidth: 1
+  }
+  },
+  threshold: null
+  }
+  },
+  
   series: [{
+  type: 'area',
   name: 'Ventas',
+  pointInterval: 24 * 3600 * 1000,
+  pointStart: Date.UTC(#{@ffirst.strftime("%Y,%m,%d")}),
   data: [#{@ventas_totales.join(', ')}]
-  }, {
+  },{
+  type: 'area',
   name: 'Gastos',
+  pointInterval: 24 * 3600 * 1000,
+  pointStart: Date.UTC(#{@ffirst.strftime("%Y,%m,%d")}),
   data: [#{@gastos_totales.join(', ')}]
+  },{
+  type: 'area',
+  name: 'Pollos',
+  pointInterval: 24 * 3600 * 1000,
+  pointStart: Date.UTC(#{@ffirst.strftime("%Y,%m,%d")}),
+  data: [#{@pollos.join(', ')}]
   }]
   });
   });
