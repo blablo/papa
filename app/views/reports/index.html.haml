@@ -1,4 +1,32 @@
 %h2=number_to_currency(@saldo)
+:javascript
+  $(function () { 
+  $('#chart').highcharts({
+  chart: {
+  type: 'line'
+  },
+  title: {
+  text: 'Fruit Consumption'
+  },
+  xAxis: {
+  categories: [#{@fechas.join(', ')}]
+  },
+  yAxis: {
+  title: {
+  text: 'Fruit eaten'
+  }
+  },
+  series: [{
+  name: 'Ventas',
+  data: [#{@ventas_totales.join(', ')}]
+  }, {
+  name: 'Gastos',
+  data: [#{@gastos_totales.join(', ')}]
+  }]
+  });
+  });
+
+#chart
 
 %h3 Cortes
 %table.table
@@ -8,7 +36,29 @@
     %th Gastos
     %th Caja
 
-  - @cortes.each do |corte|
+  -@flast.upto(@ffirst).each  do |date|
+    -cortes = @cortes.where('date(fecha) = ?', date)
+    %tr
+      %td
+        -cortes.each do |corte|
+          =link_to(date.strftime("%A") + " - " +  date.strftime("%d/%m/%Y"), corte)
+          %br
+      %td
+        -cortes.each do |corte|
+          =number_to_currency corte.total_venta
+          %br
+      %td
+        -cortes.each do |corte|
+          =number_to_currency corte.total_gastos
+          %br
+      %td
+        -cortes.each do |corte|
+          =number_to_currency corte.caja
+          %br
+
+
+
+  -@cortes.each do |corte|
     %tr
       %td=link_to corte.created_at.strftime("%d/%m/%Y %H:%M"), corte
       %td=number_to_currency corte.total_venta

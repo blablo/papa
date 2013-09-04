@@ -4,4 +4,13 @@ class Compra < ActiveRecord::Base
   has_many :gastos
   belongs_to :compra_category
 
+  def self.mas_comun
+    comunes = []
+    Gasto.mas_comun.each_pair do |c, v|
+      comunes << c
+    end
+    return self.find(comunes)
+  end
+
 end
+

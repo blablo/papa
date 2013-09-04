@@ -72,7 +72,7 @@
 
     .cliente.p_cliente
     #numpad.col-lg-3.col-md-3.col-sm-3
-      %table
+      %table.col-xs-12
         %tr
           %td{:colspan=>"4"}
             =text_field_tag 'display', '', :class => "form-control"
@@ -121,26 +121,35 @@
 
   .row
     #menu_list.col-lg-12.col-md-12.col-sm-12.col-xs-12
-      .main_menu
-        %ul.thumbnails
-          -@product_categories.each do |pc|
-            .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id }
-              =image_tag(pc.avatar_url(:thumb), :class => 'img-polaroid')
-              =pc.name
+      .well
+        .thumbnails
+          .row
+            .col-xs-12
+              %h3 Principal
+          .row
+            .col-xs-12
+              -@product_categories.each do |pc|
+                .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id }
+                  =image_tag(pc.avatar_url(:thumb), :class => 'img-polaroid')
+                  =pc.name
 
       -@product_categories.each do |pc|
         %div{:class => "submenu pc" + pc.id.to_s}
 
 
-          %ul.thumbnails
-            %li.col-md-2.col-lg-2.col-sm-2.col-xs-2
-              %h3=pc.name
-              %button.btn.btn-large.back_main{:type=>"button"}=image_tag('icons/up.png') + " Regresar"
-            -pc.products.each do |product|
-              .thumbnail.col-md-1.col-lg-1.col-sm-1{:name => product.name, :price => product.price, :product_id => product.id}
-                =image_tag(product.avatar_url(:thumb), :class => 'img-polaroid')
-                =product.name
-      .clearfix
+          .thumbnails
+            .row
+              .col-xs-12
+                %button.btn.btn-large.back_main.pull-left{:type=>"button"}=image_tag('icons/up.png') + " Regresar"
+                %h3.pull-left=pc.name
+
+            .row
+              .col-xs-12
+                -pc.products.each do |product|
+                  .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:name => product.name, :price => product.price, :product_id => product.id}
+                    =image_tag(product.avatar_url(:thumb), :class => 'img-polaroid')
+                    =product.name
+
 #pago_modal.modal.fade
   .modal-dialog
     .modal-content

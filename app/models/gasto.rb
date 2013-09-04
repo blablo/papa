@@ -11,10 +11,15 @@ class Gasto < ActiveRecord::Base
   scope :no_corte_caja, where(:corte_id => nil, :es_caja => true)
 
   scope :no_corte_no_caja, where(:corte_id => nil, :es_caja => false)
-
+  
+#  scope :mas_comun, order('count_id desc').group('compra_id').count('id')
   
   def name
     self.compra.name
+  end
+
+  def self.mas_comun
+    self.order('count_id desc').group('compra_id').limit(6).count('id')
   end
 
 

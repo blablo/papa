@@ -4,7 +4,7 @@
 
 searchTable = (inputVal) ->
   table = $(".thumbnails")
-  table.find("li").each (index, row) ->
+  table.find(".thumbnail").each (index, row) ->
     allCells = $(row).find("span")
     if allCells.length > 0
       found = false

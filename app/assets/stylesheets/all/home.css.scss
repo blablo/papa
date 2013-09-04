@@ -9,9 +9,6 @@
 
 #menu_list{
     margin-top: 1em;
-    background: #ccc;
-    padding: 3px 10px;
-    padding-top: 0px;
     .submenu{
         display: none;
         .thumbnail{
@@ -22,26 +19,30 @@
     .main_menu .thumbnail{
         cursor: pointer;
     }
-    li.span2{
-        width: 120px;
-    }
     .thumbnails > .thumbnail {
         margin-left: 20px;
     }
     .thumbnails {
-        margin-left: -60px;
+	h3{
+	    margin-top: 0;
+	}
+	padding: 10px 0;
     }
     .thumbnail{
 	overflow: hidden;
 	font-size: 10px;
+	margin-right: 5px;
     }
 }
 
-#numpad{
+@media (min-width: 768px){
     margin-top: -60px;
+}
+
+#numpad{
+
     input[type="text"]{
         height: 45px;
-        width: 254px;
         margin: 0;
         font-size: 1.8em;
     }
@@ -132,10 +133,21 @@
 
 .compras_thumbnails{
     .thumbnail{
-	font-size: 10px;
+	font-size: 11px;
 	overflow: hidden;
-	height: 200px;
     }
-
-
+    h3{
+	margin-top: 0;
+    }
+    a{
+	.avatar{
+	    width: 100%;
+	}
+    }
+    span{
+	position: absolute;
+	top: 100px;
+	background: white;
+	padding: 0 5px;
+    }
 }

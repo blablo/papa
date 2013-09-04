@@ -1,36 +1,31 @@
-.span3{:style => "margin-left: -100px;"}
-  =form_for @client, :html => {:class => "form-horizontal"}, :remote => true do |f|
-    .control-group
-      .control-label
-        =f.label "Tel"
-      .controls
-        =f.text_field :phone, :value => params[:phone]
-    .control-group
-      .control-label
-        =f.label "Calle"
-      .controls
-        =f.text_field :street
-    .control-group
-      .control-label
-        =f.label "Calle2"
-      .controls
-        =f.text_field :street2
-    .control-group
-      .control-label
-        =f.label "Colonia"
-      .controls
-        =f.text_field :district
-    .control-group
-      .control-label
-        =f.label "Notas"
-      .controls
-        =f.text_field :note
-    .control-group
-      .control-label
-        =f.label "Nombre"
-      .controls
-        =f.text_field :name
+.row
+  .col-sm-6
+    =form_for @client, :html => {:class => "form-horizontal"}, :remote => true do |f|
+      .form-group
+        =f.label "Tel", :class => "control-label col-xs-3"
+        .col-xs-9
+          =f.text_field :phone, :value => params[:phone], :class => "form-control"
+      .form-group
+        =f.label "Calle", :class => "control-label col-xs-3"
+        .col-xs-9
+          =f.text_field :street, :class => "form-control"
+      .form-group
+        =f.label "Calle2", :class => "control-label col-xs-3"
+        .col-xs-9
+          =f.text_field :street2, :class => "form-control"
+      .form-group
+        =f.label "Colonia", :class => "control-label col-xs-3"
+        .col-xs-9
+          =f.text_field :district, :class => "form-control"
+      .form-group
+        =f.label "Notas", :class => "control-label col-xs-3"
+        .col-xs-9
+          =f.text_field :note, :class => "form-control"
+      .form-group
+        =f.label "Nombre", :class => "control-label col-xs-3"
+        .col-xs-9
+          =f.text_field :name, :class => "form-control"
         =f.hidden_field :latitude
         =f.hidden_field :longitude
-.span3.pull-right{:style => 'width: 220px'}
-  #map-canvas{ :style => "width: 200px; height: 200px"}
+  .col-sm-6
+    #map-canvas{ :style => "width: 100%; height: 200px"}
