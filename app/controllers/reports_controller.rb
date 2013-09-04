@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
 
     @flast.upto(@ffirst).each  do |date|
       @fechas << date
-      cortes = @cortes.where('date(fecha) = ?', date)
+      cortes = @cortes.where('date(fecha) = ?', (date-5.hours))
       if cortes.blank?
         @ventas_totales << 0
         @gastos_totales << 0
@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
         @pollos << pollos
       end
     end
-
+    @fechas.reverse
   end
 
 end

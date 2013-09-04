@@ -1,6 +1,6 @@
 %h2=number_to_currency(@saldo)
 :javascript
-  $(function () { 
+  $(function () {
 
   $('#chart').highcharts({
   chart: {
@@ -50,19 +50,19 @@
   threshold: null
   }
   },
-  
+
   series: [{
   type: 'area',
   name: 'Ventas',
   pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@ffirst.year}, #{@ffirst.month-1}, #{@ffirst.day}),
-  data: [#{@ventas_totales.join(', ')}]
+  pointStart: Date.UTC(#{@flast.year}, #{@flast.month-1}, #{@flast.day}),
+  data: [#{@ventas_totales.reverse.join(', ')}]
   },{
   type: 'area',
   name: 'Gastos',
   pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@ffirst.year}, #{@ffirst.month-1}, #{@ffirst.day}),
-  data: [#{@gastos_totales.join(', ')}]
+  pointStart: Date.UTC(#{@flast.year}, #{@flast.month-1}, #{@flast.day}),
+  data: [#{@gastos_totales.reverse.join(', ')}]
   }]
   });
   $('#chart2').highcharts({
@@ -113,19 +113,20 @@
   threshold: null
   }
   },
-  
+
   series: [{
   type: 'area',
   name: 'Pollos',
   pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@ffirst.year}, #{@ffirst.month-1}, #{@ffirst.day}),
-  data: [#{@pollos.join(', ')}]
+  pointStart: Date.UTC(#{@flast.year}, #{@flast.month-1}, #{@flast.day}),
+  data: [#{@pollos.reverse.join(', ')}]
   }]
   });
   });
 
 #chart
 #chart2
+=@ffirst
 %h3 Cortes
 %table.table
   %tr
@@ -134,12 +135,14 @@
     %th Gastos
     %th Caja
 
-  -@flast.upto(@ffirst).each  do |date|
-    -cortes = @cortes.where('date(fecha) = ?', date)
+  -@fechas.each  do |date|
+    -cortes = @cortes.where('CONVERT_TZ(date(fecha), "GMT", "CDT") = ?', (date-5.hours))
     %tr
       %td
+        =date
         -cortes.each do |corte|
           =link_to(date.strftime("%A") + " - " +  date.strftime("%d/%m/%Y"), corte)
+          =corte.created_at
           %br
       %td
         -cortes.each do |corte|
@@ -153,15 +156,6 @@
         -cortes.each do |corte|
           =number_to_currency corte.caja
           %br
-
-
-
-  -@cortes.each do |corte|
-    %tr
-      %td=link_to corte.created_at.strftime("%d/%m/%Y %H:%M"), corte
-      %td=number_to_currency corte.total_venta
-      %td=number_to_currency corte.total_gastos
-      %td=number_to_currency corte.caja
 
   %tr
     %th
