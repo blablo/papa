@@ -11,6 +11,12 @@ $(document).on "nested:fieldRemoved", (event) ->
   $(".total span").formatCurrency()
   $("#moneypad .dado span").formatCurrency()
 
+$ ->
+  flashCallback = ->
+    $(".alert").fadeOut()
+  $(".alert").bind 'click', (ev) =>
+    $(".alert").fadeOut()
+  setTimeout flashCallback, 2000
 
 getTotal = ->
   sum = 0

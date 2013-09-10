@@ -7,7 +7,7 @@
       %span.icon-bar
 
     %a.navbar-brand{:href => "#"} Papa
-  %ul.nav.navbar-nav
+  %ul.nav.navbar-nav.collapse.navbar-ex1-collapse.navbar-collapse 
     -if user_signed_in?
       %li
         =link_to 'Logout', destroy_user_session_path, :method=>'delete'

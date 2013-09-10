@@ -136,7 +136,7 @@
     %th Caja
 
   -@fechas.each  do |date|
-    -cortes = @cortes.where('CONVERT_TZ(date(fecha), "GMT", "CDT") = ?', (date-5.hours))
+    -cortes = @cortes.where('date(fecha) = ?', (date-5.hours))
     %tr
       %td
         =date

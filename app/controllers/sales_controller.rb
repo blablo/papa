@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SalesController < ApplicationController
 load_and_authorize_resource
   def index
@@ -19,12 +20,12 @@ load_and_authorize_resource
   def create
     @sale = Sale.new(params[:sale])
     @sale.seller_id = current_user.id if current_user
-
+ 
 
     if @sale.save
       @sale.update_attribute(:total, @sale.sale_lines.sum(:valor))
 
-      redirect_to new_sale_url, :notice => "Successfully created sale."
+      redirect_to new_sale_url, :notice => "¡Venta Registrada! ¡Tu muy bien! :)"
     else
       render :action => 'new'
     end
