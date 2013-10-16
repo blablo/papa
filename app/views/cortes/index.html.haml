@@ -12,11 +12,19 @@
         Gastos:
         =number_to_currency(@gastos.sum(:precio))
         %br
-        Caja:
+        Caja Chica:
         -if @corte_anterior and @corte_anterior.caja
-          =number_to_currency(@sales.sum(:total)-@gastos.sum(:precio)+@corte_anterior.caja)
+          =number_to_currency(@corte_anterior.caja)
         -else
-          =number_to_currency(@sales.sum(:total)-@gastos.sum(:precio))
+          =number_to_currency(0)
+        %br
+        %h3
+          Total:
+          -if @corte_anterior and @corte_anterior.caja
+            =number_to_currency(@sales.sum(:total)-@gastos.sum(:precio)+@corte_anterior.caja)
+          -else
+            =number_to_currency(@sales.sum(:total)-@gastos.sum(:precio))
+
         %br
         =simple_form_for @corte, :html => { :class => 'pull-right' } do |f|
           =f.input :caja, :placeholder => '¿Cuánto se queda en caja?', input_html: { class: 'form-control' }

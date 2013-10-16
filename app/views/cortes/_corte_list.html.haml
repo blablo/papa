@@ -6,7 +6,7 @@
       %tr
         %td=sale.sale_names
         %td=number_to_currency(sale.total)
-        %td=link_to 'Eliminar', sale, :confirm => 'Are you sure?', :method => :delete
+        %td=link_to 'Cancelar', sale, :confirm => 'Cancelar ' + number_to_currency(sale.total) + '?', :method => :delete
 
 .col-sm-4
   %table.table
@@ -16,7 +16,7 @@
       %tr
         %td=gasto.name
         %td=number_to_currency(gasto.precio)
-        %td=link_to 'Eliminar', gasto, :confirm => 'Are you sure?', :method => :delete
+        %td=link_to 'Cancelar', gasto, :confirm => 'Cancelar ' + number_to_currency(gasto.precio) + '?', :method => :delete
 .clearfix
 
 .col-sm-8

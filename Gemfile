@@ -37,6 +37,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem "nested_form"
 gem "ancestry"
+gem 'jquery-turbolinks'
 
 
 
