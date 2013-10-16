@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require jquery_nested_form
 //= require jquery.currency.min
 //= require_tree .
@@ -42,4 +41,13 @@ function updateMarkerPosition(latLng) {
   $('#client_longitude').val(latLng.lng());
   $('#client_latitude').val(latLng.lat());
 }
+
+
+			$(function() {
+				$('nav#menu-left').mmenu();
+
+
+			    $.failsafe({checkUrl:'/',checkInterval:5000,disableElements:".btn"});
+
+			});
 

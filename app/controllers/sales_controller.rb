@@ -59,6 +59,6 @@ load_and_authorize_resource
   def destroy
     @sale = Sale.find(params[:id])
     @sale.destroy
-    redirect_to sales_url, :notice => "Successfully destroyed sale."
+    redirect_to :back, :notice => "Se ha cancelado la venta."
   end
 end

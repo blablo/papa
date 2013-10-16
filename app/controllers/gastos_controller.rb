@@ -49,6 +49,6 @@ load_and_authorize_resource
   def destroy
     @gasto = Gasto.find(params[:id])
     @gasto.destroy
-    redirect_to gastos_url, :notice => "Successfully destroyed gasto."
+    redirect_to :back, :notice => "Se ha cancelado el gasto."
   end
 end

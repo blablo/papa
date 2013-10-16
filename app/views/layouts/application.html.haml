@@ -3,11 +3,13 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
       %title= content_for?(:title) ? yield(:title) : "Papa"
       %meta{:content => content_for?(:description) ? yield(:description) : "Papa", :name => "description"}
+        = stylesheet_link_tag "http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
         = stylesheet_link_tag "all/application", :media => "all"
         = stylesheet_link_tag "print", :media => "print"
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
         = javascript_include_tag "application"
-        
+
 
         = csrf_meta_tags
         = yield(:head)
@@ -16,34 +18,34 @@
     #main{:role => "main"}
       .container-fluid
         .content
-          .row
-            .col-lg-2.hidden-xs
-              %ul.nav.nav-tabs.nav-stacked
-                %li
-                  =link_to("Nueva Venta", new_sale_url)
-                %li
-                  =link_to("Nueva Compras", compras_url)
-                %li
-                  =link_to("Corte", cortes_url)
-
-              -if current_user and current_user.has_role? :admin
-                %ul.nav.nav-tabs.nav-stacked
-                  %li
-                    =link_to("Ventas", sales_url)
-                  %li
-                    =link_to("Productos", products_url)
-                  %li
-                    =link_to("Recetas", recetas_url)
-                  %li
-                    =link_to("Reportes", reports_url)
-                  %li
-                    =link_to("Cat. Prod.", product_categories_url)
-                  %li
-                    =link_to("Cat. Compras", compra_categories_url)
-
-            .col-lg-10
-              = render 'layouts/messages'
-              = yield
+          .col-lg-12
+            = render 'layouts/messages'
+            = yield
           %footer
+        %nav#menu-left
+          %ul
+            %li
+              =link_to(raw("<span class='glyphicon glyphicon-usd'></span> <span class='txt'>Nueva Venta</span>"), new_sale_url)
+            %li
+              =link_to(raw("<span class='glyphicon glyphicon-shopping-cart'></span> <span class='txt'>Nueva Compra<span>"), compras_url)
+            %li
+              =link_to(raw("<span class='glyphicon glyphicon-lock'></span> <span class='txt'>Corte</span>"), cortes_url)
+
+            -if current_user and current_user.has_role? :admin
+              %li
+                =link_to("Ventas", sales_url)
+              %li
+                =link_to("Productos", products_url)
+              %li
+                =link_to("Recetas", recetas_url)
+              %li
+                =link_to("Reportes", reports_url)
+              %li
+                =link_to("Cat. Prod.", product_categories_url)
+              %li
+                =link_to("Cat. Compras", compra_categories_url)
+
+
+
       / ! end of .container
     / ! end of #main

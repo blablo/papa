@@ -1,21 +1,22 @@
 .col-sm-4
   %table.table
     %tr
-      %th{:colspan => 2} Ventas
+      %th{:colspan => 3} Ventas
     -@sales.each do |sale|
       %tr
         %td=sale.sale_names
         %td=number_to_currency(sale.total)
+        %td=link_to 'Eliminar', sale, :confirm => 'Are you sure?', :method => :delete
 
 .col-sm-4
   %table.table
     %tr
-      %th{:colspan => 2} Gastos
+      %th{:colspan => 3} Gastos
     -@gastos.each do |gasto|
       %tr
         %td=gasto.name
         %td=number_to_currency(gasto.precio)
-
+        %td=link_to 'Eliminar', gasto, :confirm => 'Are you sure?', :method => :delete
 .clearfix
 
 .col-sm-8
