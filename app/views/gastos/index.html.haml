@@ -5,14 +5,21 @@
     %th Compra
     %th Volumen
     %th Precio
+    %th PU
     %th Fecha
+    %th
+    %th
+    %th
   - for gasto in @gastos
     %tr
       %td
         =gasto.compra_id.to_s + "-" + gasto.compra.name
+        -if !gasto.nota.blank?
+          ='('+gasto.nota+')'
       %td= gasto.volumen
-      %td= gasto.precio
-      %td= gasto.created_at
+      %td= number_with_precision(gasto.precio, :precision => 2, delimiter: ',')
+      %td= number_with_precision(gasto.precio/gasto.volumen, :precision => 2, delimiter: ',')
+      %td= gasto.created_at.strftime('%d-%m-%Y')
       %td= link_to 'Show', gasto
       %td= link_to 'Edit', edit_gasto_path(gasto)
       %td= link_to 'Destroy', gasto, :confirm => 'Are you sure?', :method => :delete
