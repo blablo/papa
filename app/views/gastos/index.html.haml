@@ -9,7 +9,7 @@
   - for gasto in @gastos
     %tr
       %td
-        =gasto.compra_id + "-" + gasto.compra.name
+        =gasto.compra_id.to_s + "-" + gasto.compra.name
       %td= gasto.volumen
       %td= gasto.precio
       %td= gasto.created_at
