@@ -27,11 +27,11 @@
   =f.hidden_field :por_pagar
 
   .row
-    .col-lg-8.col-md-8.col-sm-8
+    .col-lg-8.col-md-8.col-xs-12
       #sale_list
         .col-xs-12
           .row.sale_head
-            .col-xs-6
+            .col-sm-4.col-xs-2
               Artículo
             .col-xs-2.center_text
               Precio
@@ -45,7 +45,7 @@
         =f.fields_for :sale_lines do |line_form|
           .col-xs-12
             .row
-              .col-xs-6.p_name
+              .col-sm-4.col-xs-2.p_name
                 blabla
               .col-xs-2.precio.center_text
                 $12.00
@@ -54,6 +54,7 @@
               .col-xs-2.valor.center_text
                 $23
               .col-xs-2.remove
+                hjhgjgjhgjgj
                 =line_form.hidden_field :product_id, :class => "f_product"
                 =line_form.hidden_field :precio, :class => "f_precio"
                 =line_form.hidden_field :cantidad, :class => "f_cantidad"

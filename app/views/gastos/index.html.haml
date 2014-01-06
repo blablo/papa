@@ -8,10 +8,11 @@
     %th Fecha
   - for gasto in @gastos
     %tr
-      %td= gasto.compra_id
+      %td
+        =gasto.compra_id + "-" + gasto.compra.name
       %td= gasto.volumen
       %td= gasto.precio
-      %td= gasto.fecha
+      %td= gasto.created_at
       %td= link_to 'Show', gasto
       %td= link_to 'Edit', edit_gasto_path(gasto)
       %td= link_to 'Destroy', gasto, :confirm => 'Are you sure?', :method => :delete
