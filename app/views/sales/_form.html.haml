@@ -86,33 +86,33 @@
             %button.btn.btn-large.btn-default.minus{:type=>"button"} -
         %tr
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 7
+            %button.btn.btn-large.btn-default.number.siete{:type=>"button"} 7
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 8
+            %button.btn.btn-large.btn-default.number.ocho{:type=>"button"} 8
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 9
+            %button.btn.btn-large.btn-default.number.nueve{:type=>"button"} 9
           %td{:rowspan=>"2"}
             %button.btn.btn-large.btn-default.double.plus{:type=>"button"} +
         %tr
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 4
+            %button.btn.btn-large.btn-default.number.cuatro{:type=>"button"} 4
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 5
+            %button.btn.btn-large.btn-default.number.cinco{:type=>"button"} 5
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 6
+            %button.btn.btn-large.btn-default.number.seis{:type=>"button"} 6
         %tr
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 1
+            %button.btn.btn-large.btn-default.number.uno{:type=>"button"} 1
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 2
+            %button.btn.btn-large.btn-default.number.dos{:type=>"button"} 2
           %td
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 3
+            %button.btn.btn-large.btn-default.number.tres{:type=>"button"} 3
           %td{:rowspan=>"2"}
-            %button.btn.btn-large.btn-default.double{:type=>"button", :onclick => "$('#pago_modal').modal('show')"} =
+            %button.btn.btn-large.btn-default.double.enter{:type=>"button", :onclick => "$('#pago_modal').modal('show')"} =
 
         %tr
           %td{:colspan=>"2"}
-            %button.btn.btn-large.btn-default.number{:type=>"button"} 0
+            %button.btn.btn-large.btn-default.number.cero{:type=>"button"} 0
           %td
             %button.btn.btn-large.btn-default.punto{:type=>"button"} .
 
@@ -129,8 +129,8 @@
               %h3 Principal
           .row
             .col-xs-12
-              -@product_categories.each do |pc|
-                .thumbnail.main_thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id }
+              -@product_categories.each_with_index do |pc, index|
+                .thumbnail.main_thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id, :class => 'option_' + index.to_s }
                   =image_tag(pc.avatar_url(:thumb), :class => 'img-polaroid')
                   =pc.name
 
@@ -146,8 +146,8 @@
 
             .row
               .col-xs-12
-                -pc.products.each do |product|
-                  .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:name => product.name, :price => product.price, :product_id => product.id}
+                -pc.products.each_with_index do |product, index|
+                  .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:name => product.name, :price => product.price, :product_id => product.id, :class => 'option_' + index.to_s }
                     =image_tag(product.avatar_url(:thumb), :class => 'img-polaroid')
                     =product.name
 

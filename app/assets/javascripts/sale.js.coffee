@@ -32,6 +32,58 @@ getTotal = ->
 
 
 $(document).ready ->
+  $("body").keyup((event) ->
+    console.log(event.keyCode)
+    if $('input').is(":focus") == false and $('textarea').is(":focus") == false
+      switch event.keyCode
+        when 48
+          $(".cero").click()
+        when 49
+          $(".uno").click()
+        when 50
+          $(".dos").click()
+        when 51
+          $(".tres").click()
+        when 52
+          $(".cuatro").click()
+        when 53
+          $(".cinco").click()
+        when 54
+          $(".seis").click()
+        when 55
+          $(".siete").click()
+        when 56
+          $(".ocho").click()
+        when 57
+          $(".nueve").click()
+
+        when 190
+          $(".punto").click()
+        when 173
+          $(".minus").click()
+        when 61
+          $(".plus").click()
+        when 13
+          $(".enter").click()
+
+
+        when 81
+          $(".option_0:visible").click()
+        when 87
+          $(".option_1:visible").click()
+        when 69
+          $(".option_2:visible").click()
+        when 82
+          $(".option_3:visible").click()
+        when 84
+          $(".option_4:visible").click()
+        when 89
+          $(".option_5:visible").click()
+        when 85
+          $(".option_6:visible").click()
+  ).keydown (event) ->
+    event.preventDefault()  if event.which is 13
+
   $("#search").keyup ->
     searchTable $(this).val()
   $(".main_thumbnail").click ->
