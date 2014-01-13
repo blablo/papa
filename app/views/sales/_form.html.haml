@@ -1,4 +1,4 @@
-
+-letras = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I']
 .row
   .col-sm-2.info_store
     %h1 Rico Don Pollo
@@ -54,7 +54,6 @@
               .col-xs-2.valor.center_text
                 $23
               .col-xs-2.remove
-                hjhgjgjhgjgj
                 =line_form.hidden_field :product_id, :class => "f_product"
                 =line_form.hidden_field :precio, :class => "f_precio"
                 =line_form.hidden_field :cantidad, :class => "f_cantidad"
@@ -131,6 +130,7 @@
             .col-xs-12
               -@product_categories.each_with_index do |pc, index|
                 .thumbnail.main_thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:id => "main" + pc.id.to_s, :rel => pc.id, :class => 'option_' + index.to_s }
+                  .letra=letras[index]
                   =image_tag(pc.avatar_url(:thumb), :class => 'img-polaroid')
                   =pc.name
 
@@ -148,6 +148,7 @@
               .col-xs-12
                 -pc.products.each_with_index do |product, index|
                   .thumbnail.col-md-1.col-lg-1.col-sm-1.col-xs-2{:name => product.name, :price => product.price, :product_id => product.id, :class => 'option_' + index.to_s }
+                    .letra=letras[index]
                     =image_tag(product.avatar_url(:thumb), :class => 'img-polaroid')
                     =product.name
 
