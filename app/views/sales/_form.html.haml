@@ -200,7 +200,7 @@
       .modal-footer
         %button.btn{:onclick => "$('.modal').modal('hide'); window.print()"} Imprimir
         %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('.modal').modal('hide'); window.print(); $('.sale_form').submit();"}Domicilio
-        %button.btn.btn-primary{:onclick => "$('.modal').modal('hide'); window.print(); $('.sale_form').submit();"} Pagar
+        %button.btn.btn-primary.pagar_btn{:onclick => "$('.modal').modal('hide'); window.print(); $('.sale_form').submit();"} Pagar
 
 
 

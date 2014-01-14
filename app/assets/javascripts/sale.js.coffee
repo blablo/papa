@@ -36,35 +36,39 @@ $(document).ready ->
     console.log(event.keyCode)
     if $('input').is(":focus") == false and $('textarea').is(":focus") == false
       switch event.keyCode
-        when 48
+        when 48, 96
           $(".cero").click()
-        when 49
+        when 49, 97
           $(".uno").click()
-        when 50
+        when 50, 98
           $(".dos").click()
-        when 51
+        when 51, 99
           $(".tres").click()
-        when 52
+        when 52, 100
           $(".cuatro").click()
-        when 53
+        when 53, 101
           $(".cinco").click()
-        when 54
+        when 54, 102
           $(".seis").click()
-        when 55
+        when 55, 103
           $(".siete").click()
-        when 56
+        when 56, 104
           $(".ocho").click()
-        when 57
+        when 57, 105
           $(".nueve").click()
 
-        when 190
+        when 190, 110
           $(".punto").click()
-        when 173
+        when 173, 109
           $(".minus").click()
-        when 61
+        when 61, 107
           $(".plus").click()
         when 13
           $(".enter").click()
+          $(".pagar_btn:visible").click()
+        when 90, 111
+          $(".back_main:visible").click()
+          $(".empty_display").click()
 
 
         when 81
