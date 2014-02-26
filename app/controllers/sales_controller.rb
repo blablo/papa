@@ -3,7 +3,6 @@ class SalesController < ApplicationController
 load_and_authorize_resource
   def index
     @sales = Sale.order('created_at desc')
-    
     @sales_pagar = Sale.where(:por_pagar => true)
 
   end
@@ -14,6 +13,7 @@ load_and_authorize_resource
 
   def new
     @sale = Sale.new
+    @sale_num = Sale.no_corte.count + 1
     @product_categories = ProductCategory.roots
   end
 
