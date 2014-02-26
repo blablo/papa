@@ -30,7 +30,7 @@ gem "better_errors", ">= 0.7.2", :group => :development
 
 gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
 gem "nifty-generators", :group => :development
-gem "debugger", :group => [:development]
+# gem "debugger", :group => [:development]
 
 gem "mocha", :group => :test
 gem 'carrierwave'
@@ -38,6 +38,3 @@ gem 'rmagick'
 gem "nested_form"
 gem "ancestry"
 gem 'jquery-turbolinks'
-
-
-

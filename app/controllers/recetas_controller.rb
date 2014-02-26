@@ -6,7 +6,7 @@ load_and_authorize_resource
 
   def new
     @receta = Receta.new
-    @productos_no_receta = Product.no_receta
+    @productos_no_receta = Product.no_receta 
 
   end
 
@@ -24,7 +24,7 @@ load_and_authorize_resource
 
   def edit
     @receta = Receta.find(params[:id])
-    @productos_no_receta = Product.no_receta
+    @productos_no_receta = Product.no_receta + [@receta.product]
 
   end
 
