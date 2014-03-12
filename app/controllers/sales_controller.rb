@@ -24,7 +24,6 @@ load_and_authorize_resource
     @sale = Sale.new(params[:sale])
     @sale.seller_id = current_user.id if current_user
  
-
     if @sale.save
       Pedido.create(:orden => Sale.no_corte.count.to_s, :sale_id => @sale.id, :client_id => @sale.client_id) if @sale.domicilio
       @sale.update_attribute(:total, @sale.sale_lines.sum(:valor))
