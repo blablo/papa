@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :role_ids, :as => :admin
-  attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :login
+  attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :login, :role_ids
   attr_accessor :login
 
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -23,4 +23,9 @@ class User < ActiveRecord::Base
 def is?(role)
   roles.include?(role.to_s)
 end
+
+  def is_admin?
+    true
+  end
+
 end

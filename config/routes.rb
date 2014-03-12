@@ -1,6 +1,11 @@
 Papa::Application.routes.draw do
 
 
+  resources :pedidos
+
+  resources :inventarios
+
+
   resources :clients do
 collection do 
      post 'search'
@@ -15,6 +20,10 @@ end
       get 'pagar'
     end
   end
+
+  get '/balances/:year/:month', :to => "balances#show"
+  get '/balances' => "balances#index"
+
 
   resources :ventas
 
@@ -40,7 +49,7 @@ end
   root :to => "home#index"
   devise_for :users
   resources :users
-
+  ActiveAdmin.routes(self)
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

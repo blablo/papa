@@ -1,0 +1,7 @@
+-month = '0'
+%h1 Balances
+%ul
+  -@flast.upto(@ffirst).each do |date|
+    -if date.month != month
+      -month = date.month
+      %li=link_to(I18n.t("date.month_names")[date.month] + " " + date.year.to_s, '/balances/'+date.year.to_s+'/'+date.month.to_s)

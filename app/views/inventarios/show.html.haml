@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Compra:
+  = @inventario.compra_id
+%p
+  %b Existencia:
+  = @inventario.existencia
+
+= link_to 'Edit', edit_inventario_path(@inventario)
+\|
+= link_to 'Back', inventarios_path

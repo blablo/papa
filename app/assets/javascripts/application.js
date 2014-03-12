@@ -47,8 +47,8 @@ function updateMarkerPosition(latLng) {
 			$(function() {
 				$('nav#menu-left').mmenu();
 
-
-			    $.failsafe({checkUrl:'/',checkInterval:5000,disableElements:".btn"});
+			    $('.popover-btn').popover();
+			    $.failsafe({checkUrl:'/',checkInterval:10000,disableElements:".btn"});
 
 			});
 

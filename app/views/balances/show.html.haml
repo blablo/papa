@@ -1,0 +1,29 @@
+%h1='Balance ' + I18n.t("date.month_names")[params[:month].to_i] + ' ' + params[:year].to_s
+
+-if !@cortes.blank?
+  %h2 Cortes
+  %table.table
+    %tr
+      %th Día
+      %th Ventas
+      %th Gastos
+
+    -@ffirst.upto(@flast).each do |date|
+      -cortes = @cortes.where('date(fecha) = date(?)', (date-5.hours))
+      -gastos = @gastos.where('date(created_at) = date(?)', (date-5.hours))
+
+      %tr
+        %td
+          -cortes.each do |corte|
+            =link_to(l(date, :format => '%A').capitalize  + " - " +  date.strftime("%d"), corte)
+            %br
+        %td
+          =number_to_currency cortes.sum(:total_venta)
+        %td
+          =number_to_currency gastos.sum(:precio)
+
+    %tr
+      %th
+      %th=number_to_currency @cortes.sum(:total_venta)
+      %th=number_to_currency @gastos.sum(:precio)
+      %th

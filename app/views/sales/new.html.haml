@@ -2,3 +2,16 @@
   Venta:
   =@sale_num
 = render 'form'
+-if !@pedidos.empty?
+  .row
+    .col-xs-12
+      -Pedido.all.each do |pedido|
+        -contenido = ""
+        -contenido += Pedido.last.sale.sale_lines.inject(''){|sum, sl| sum + sl.product.name + ", "} + "<br />"
+        -contenido += pedido.client.street + "<br /> Tel: " + pedido.client.phone if pedido.client
+        .thumbnail.pedido
+
+          %button{:type => "button", :class => "btn btn-default popover-btn", 'data-container' => "body", 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => contenido, 'data-html' => 'true' }
+            =pedido.orden
+
+          =button_to "Entregado", pedido, :method => "delete", :class => 'btn btn-success', :onclick => "window.print();"

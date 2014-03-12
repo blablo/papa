@@ -1,10 +1,20 @@
 .row
   .col-lg-12
     %h1 Corte
+    .row
+      =render 'corte_list'
+      .col-sm-6
+        .well
+          %h3 Inventario
+          %ul.list-group
+            -@inventario.each do |inventario|
+              %li.list-group-item
+                %span.badge=number_with_precision(inventario.existencia, :precision => 2)
+                =inventario.compra.name
+                %span.label.label-default=number_with_precision(@recetas[inventario.compra.name] + inventario.existencia)
 
-    =render 'corte_list'
 
-    .col-sm-8
+    .col-sm-12
       .pull-right{:style => 'text-align: right;'}
         Venta:
         =number_to_currency(@sales.sum(:total))
@@ -34,22 +44,8 @@
             %br
           =f.button :submit, 'Hacer Corte', class: 'btn-default btn'
 
-%hr
-.col-sm-8.hidden-print
-  %table.table
-    %tr
-      %th Día
-      %th Ventas
-      %th Gastos
-      %th Caja
-
-    - @cortes.each do |corte|
-      %tr
-        %td=link_to corte.fecha.strftime("%d/%m/%Y %H:%M"), corte
-        %td=number_to_currency corte.total_venta
-        %td=number_to_currency corte.total_gastos
-        %td=number_to_currency corte.caja
-
+%br
+%br
 
 .clearfix
 

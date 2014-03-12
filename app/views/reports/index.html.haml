@@ -1,166 +1,58 @@
 %h2=number_to_currency(@saldo)
-:javascript
-  $(function () {
-
-  $('#chart').highcharts({
-  chart: {
-  zoomType: 'x',
-  spacingRight: 20
-  },
-  title: {
-  text: 'Ventas'
-  },
-  xAxis: {
-  type: 'datetime',
-  maxZoom: 14 * 24 * 3600000, // fourteen days
-  title: {
-  text: null
-  }
-  },
-  yAxis: {
-  title: {
-  text: 'Dinero'
-  }
-  },
-  tooltip: {
-  shared: true
-  },
-  legend: {
-  enabled: false
-  },
-  plotOptions: {
-  area: {
-  fillColor: {
-  linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-  stops: [
-  [0, Highcharts.getOptions().colors[0]],
-  [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-  ]
-  },
-  lineWidth: 1,
-  marker: {
-  enabled: false
-  },
-  shadow: false,
-  states: {
-  hover: {
-  lineWidth: 1
-  }
-  },
-  threshold: null
-  }
-  },
-
-  series: [{
-  type: 'area',
-  name: 'Ventas',
-  pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@flast.year}, #{@flast.month-1}, #{@flast.day}),
-  data: [#{@ventas_totales.reverse.join(', ')}]
-  },{
-  type: 'area',
-  name: 'Gastos',
-  pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@flast.year}, #{@flast.month-1}, #{@flast.day}),
-  data: [#{@gastos_totales.reverse.join(', ')}]
-  }]
-  });
-  $('#chart2').highcharts({
-  chart: {
-  zoomType: 'x',
-  spacingRight: 20
-  },
-  title: {
-  text: 'Pollos'
-  },
-  xAxis: {
-  type: 'datetime',
-  maxZoom: 14 * 24 * 3600000, // fourteen days
-  title: {
-  text: null
-  }
-  },
-  yAxis: {
-  title: {
-  text: 'Pollos Vendidos'
-  }
-  },
-  tooltip: {
-  shared: true
-  },
-  legend: {
-  enabled: false
-  },
-  plotOptions: {
-  area: {
-  fillColor: {
-  linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-  stops: [
-  [0, Highcharts.getOptions().colors[0]],
-  [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-  ]
-  },
-  lineWidth: 1,
-  marker: {
-  enabled: false
-  },
-  shadow: false,
-  states: {
-  hover: {
-  lineWidth: 1
-  }
-  },
-  threshold: null
-  }
-  },
-
-  series: [{
-  type: 'area',
-  name: 'Pollos',
-  pointInterval: 24 * 3600 * 1000,
-  pointStart: Date.UTC(#{@flast.year}, #{@flast.month-1}, #{@flast.day}),
-  data: [#{@pollos.reverse.join(', ')}]
-  }]
-  });
-  });
-
-#chart
-#chart2
-=@ffirst
 %h3 Cortes
 %table.table
   %tr
     %th Día
     %th Ventas
+    %th Gastos Caja
     %th Gastos
-    %th Caja
+    %th Pollos
+    %th Arrachera
+    %th Picaña
+    %th Costilla
+    %th Chamorros
+    %th Tacos
 
-  -@fechas.each  do |date|
-    -cortes = @cortes.where('date(fecha) = ?', (date-5.hours))
+
+  -@ffirst.downto(@flast).each  do |date|
+    -cortes = @cortes.where('date(fecha) = date(?)', (date-5.hours))
+    -gastos = @gastos.where('date(created_at) = date(?)', (date-5.hours))
     %tr
       %td
-        =date
-        -cortes.each do |corte|
-          =link_to(date.strftime("%A") + " - " +  date.strftime("%d/%m/%Y"), corte)
-          =corte.created_at
-          %br
+        =l(date, :format => '%A').capitalize + ' - ' + date.strftime("%d/%m/%Y")
       %td
         -cortes.each do |corte|
-          =number_to_currency corte.total_venta
+          =link_to(number_to_currency(corte.total_venta), corte)
           %br
       %td
         -cortes.each do |corte|
           =number_to_currency corte.total_gastos
           %br
       %td
-        -cortes.each do |corte|
-          =number_to_currency corte.caja
-          %br
+        =number_to_currency(gastos.sum(:precio))
+      %td
+        =number_with_precision(cortes.inject(0){|sum, corte| sum + (ActiveSupport::JSON.decode(corte.principales)['Pollo Crudo'] ? ActiveSupport::JSON.decode(corte.principales)['Pollo Crudo'] : 0) }, :precision => 2)
+
+      %td
+        =number_with_precision(cortes.inject(0){|sum, corte| sum + (ActiveSupport::JSON.decode(corte.principales)['Arrachera'] ? ActiveSupport::JSON.decode(corte.principales)['Arrachera'] : 0) }, :precision => 2)
+
+      %td
+        =number_with_precision(cortes.inject(0){|sum, corte| sum + (ActiveSupport::JSON.decode(corte.principales)['Picaña'] ? ActiveSupport::JSON.decode(corte.principales)['Picaña'] : 0) }, :precision => 2)
+      %td
+        =number_with_precision(cortes.inject(0){|sum, corte| sum + (ActiveSupport::JSON.decode(corte.principales)['Costilla'] ? ActiveSupport::JSON.decode(corte.principales)['Costilla'] : 0) }, :precision => 2)
+
+      %td
+        =number_with_precision(cortes.inject(0){|sum, corte| sum + (ActiveSupport::JSON.decode(corte.principales)['Chamorro'] ? ActiveSupport::JSON.decode(corte.principales)['Chamorro'] : 0) }, :precision => 2)
+      %td
+        =number_with_precision(cortes.inject(0){|sum, corte| sum + (ActiveSupport::JSON.decode(corte.principales)['Tacos'] ? ActiveSupport::JSON.decode(corte.principales)['Tacos'] : 0) }, :precision => 2)
+
+
 
   %tr
     %th
     %th=number_to_currency @cortes.sum(:total_venta)
     %th=number_to_currency @cortes.sum(:total_gastos)
+    %th=number_to_currency @gastos.sum(:precio)
     %th
 
 

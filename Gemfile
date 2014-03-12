@@ -38,3 +38,6 @@ gem 'rmagick'
 gem "nested_form"
 gem "ancestry"
 gem 'jquery-turbolinks'
+
+gem 'activeadmin', github: "gregbell/active_admin"		 
+gem "byebug", :group => [:development]

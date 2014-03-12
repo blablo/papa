@@ -17,4 +17,10 @@ namespace :admin do
     end
   end
 
+  task :pollos_corte => :environment do 
+    Corte.all.each do |corte|
+      corte.update_attribute(:principales, corte.count_recetas.to_json)
+    end
+  end
+  
 end

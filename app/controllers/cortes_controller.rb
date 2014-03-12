@@ -8,7 +8,7 @@ load_and_authorize_resource
     @gastos = Gasto.no_corte_caja
     @corte = Corte.new
     @corte_anterior = Corte.last rescue nil
-
+    @inventario = Inventario.all
     @recetas = { }
 
     @sales.each do |sale|

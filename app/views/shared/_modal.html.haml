@@ -7,4 +7,4 @@
       .modal-body
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
-        %button.btn.btn-primary{:type => "button", :onclick => "$('.modal-footer .btn-primary').parent().parent().find('form').submit();"} Guardar
+        %button.btn.btn-primary{:type => "button", :onclick => "$(this).parent().parent().find('form').submit();"} Guardar

@@ -15,6 +15,9 @@ load_and_authorize_resource
     @sale = Sale.new
     @sale_num = Sale.no_corte.count + 1
     @product_categories = ProductCategory.roots
+
+    @inventarios = Inventario.where('existencia <= minimo')
+    @pedidos = Pedido.all
   end
 
   def create
@@ -23,8 +26,9 @@ load_and_authorize_resource
  
 
     if @sale.save
+      Pedido.create(:orden => Sale.no_corte.count.to_s, :sale_id => @sale.id, :client_id => @sale.client_id) if @sale.domicilio
       @sale.update_attribute(:total, @sale.sale_lines.sum(:valor))
-
+      @sale.actualiza_inventario(:baja)
       redirect_to new_sale_url, :notice => "¡Venta Registrada! ¡Tu muy bien! :)"
     else
       render :action => 'new'
@@ -58,6 +62,7 @@ load_and_authorize_resource
 
   def destroy
     @sale = Sale.find(params[:id])
+    @sale.actualiza_inventario(:sube)
     @sale.destroy
     redirect_to :back, :notice => "Se ha cancelado la venta."
   end

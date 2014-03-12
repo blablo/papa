@@ -17,14 +17,45 @@
       .input-group
         %span.input-group-addon $
         =f.number_field :precio, :class => 'form-control'
+    .row
+      .col-xs-4
+        .form-group
+          =f.label :subtotal
+          .input-group
+            %span.input-group-addon $
+            =f.number_field :subtotal, :class => 'form-control'
+      .col-xs-4
+        .form-group
+          =f.label :iva
+          .input-group
+            %span.input-group-addon $
+            =f.number_field :iva, :class => 'form-control'
+      .col-xs-4
+        .form-group
+          =f.label :proveedor
+          .input-group
+            =f.select :proveedor_id, options_from_collection_for_select(Proveedor.all, :id, :nombre), {:include_blank => true}, :class => 'form-control'
+
     .form-group
       =f.label :nota
       =f.text_field :nota, :class => 'form-control'
-    
+
 
     %label.checkbox{ :for => "gasto_es_caja"}
       =f.check_box :es_caja, :checked => true
       Gasto de caja
 
-    =f.hidden_field :compra_id 
+    =f.hidden_field :compra_id
   .clearfix
+  .well
+    %label Volumen
+    =@ultimo_gasto.volumen
+    %br
+    %label Costo
+    =number_to_currency(@ultimo_gasto.precio)
+    %br
+    %label Precio Unitario
+    =number_to_currency(@ultimo_gasto.precio/@ultimo_gasto.volumen)
+    %br
+    %label Fecha
+    =@ultimo_gasto.created_at.strftime('%d/%m/%Y') + ' -> hace ' + (Date.today - @ultimo_gasto.created_at.to_date).to_i.to_s + " dias"

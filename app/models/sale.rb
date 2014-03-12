@@ -1,5 +1,5 @@
 class Sale < ActiveRecord::Base
-  attr_accessible :client_id, :seller_id, :corte_id, :total, :sale_lines_attributes, :por_pagar, :nota
+  attr_accessible :client_id, :seller_id, :corte_id, :total, :sale_lines_attributes, :por_pagar, :nota, :domicilio
   has_many :sale_lines, :dependent => :destroy
   belongs_to :client
 
@@ -23,5 +23,20 @@ class Sale < ActiveRecord::Base
     end
     return nombres.to_sentence
   end
+
+  def actualiza_inventario(tipo)
+    self.sale_lines.each do |sl|
+      sl.product.receta.receta_lines.each do |rl|
+        inv = Inventario.where(:compra_id => rl.compra_id).first
+        if tipo == :sube
+          inv.update_attribute(:existencia, inv.existencia+(sl.cantidad*rl.cantidad)) if inv
+        else
+          inv.update_attribute(:existencia, inv.existencia-(sl.cantidad*rl.cantidad)) if inv
+        end
+
+      end
+    end
+  end
+
 
 end

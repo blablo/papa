@@ -175,3 +175,13 @@
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
+
+
+.pedido{
+    width: 100px;
+    float: left;
+    margin-right: 15px;
+    .popover-btn{
+	border: none;
+    }
+}

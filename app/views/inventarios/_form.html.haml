@@ -1,0 +1,9 @@
+= simple_form_for(@inventario) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :compra_id
+    = f.input :existencia
+
+  .form-actions
+    = f.button :submit

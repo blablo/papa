@@ -13,9 +13,9 @@ $(document).on "nested:fieldRemoved", (event) ->
 
 $ ->
   flashCallback = ->
-    $(".alert").fadeOut()
-  $(".alert").bind 'click', (ev) =>
-    $(".alert").fadeOut()
+    $(".notice").fadeOut()
+  $(".notice").bind 'click', (ev) =>
+    $(".notice").fadeOut()
   setTimeout flashCallback, 2000
 
 getTotal = ->

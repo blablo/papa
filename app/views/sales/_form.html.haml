@@ -25,6 +25,7 @@
   =f.hidden_field :client_id, :id => "client_id"
   =f.hidden_field :total
   =f.hidden_field :por_pagar
+  =f.hidden_field :domicilio
 
   .row
     .col-lg-8.col-md-8.col-xs-12
@@ -62,7 +63,13 @@
 
 
         =f.link_to_add "Add a task", :sale_lines, :style => "display: none"
-
+      -if !@inventarios.empty?
+        .alert.alert-danger
+          -@inventarios.each do |inv|
+            .label.label-danger
+              =inv.compra.name
+              =number_with_precision(inv.existencia, :precision => 2)
+            &nbsp;
       .pull-left
         =f.text_area :nota, :class => "form-control"
       .total Total: <span>0.0</span>
@@ -71,6 +78,7 @@
       .p_cambio Cambio: <span>0.0</span>
 
     .cliente.p_cliente
+
     #numpad.col-lg-3.col-md-3.col-sm-3
       %table.col-xs-12
         %tr
@@ -114,7 +122,6 @@
             %button.btn.btn-large.btn-default.number.cero{:type=>"button"} 0
           %td
             %button.btn.btn-large.btn-default.punto{:type=>"button"} .
-
 
 
 
@@ -199,7 +206,8 @@
 
       .modal-footer
         %button.btn{:onclick => "$('.modal').modal('hide'); window.print()"} Imprimir
-        %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('.modal').modal('hide'); window.print(); $('.sale_form').submit();"}Domicilio
+        %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('.modal').modal('hide'); window.print(); $('.sale_form').submit();"}Crédito
+        %button.btn{:onclick => "$('#sale_domicilio').val('true'); $('.modal').modal('hide'); window.print(); $('.sale_form').submit();"}Domicilio
         %button.btn.btn-primary.pagar_btn{:onclick => "$('.modal').modal('hide'); window.print(); $('.sale_form').submit();"} Pagar
 
 
