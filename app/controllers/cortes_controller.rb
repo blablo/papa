@@ -86,6 +86,7 @@ load_and_authorize_resource
 
     @corte.total_venta = @sales.sum(:total)
     @corte.total_gastos = @gastos.sum(:precio)
+    @corte.principales = @corte.count_recetas.to_json
 
     respond_to do |format|
       
