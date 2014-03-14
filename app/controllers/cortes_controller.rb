@@ -86,7 +86,7 @@ load_and_authorize_resource
 
     @corte.total_venta = @sales.sum(:total)
     @corte.total_gastos = @gastos.sum(:precio)
-    @corte.principales = @corte.count_recetas.to_json
+
 
     respond_to do |format|
       
@@ -101,6 +101,8 @@ load_and_authorize_resource
         @gastos.each do |gasto|
           gasto.update_attribute(:corte_id, @corte.id)
         end
+
+        @corte.update_attributes(:principales, @corte.count_recetas.to_json)
         
         format.html { redirect_to @corte, notice: 'Corte was successfully created.' }
         format.json { render json: @corte, status: :created, location: @corte }

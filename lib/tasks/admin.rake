@@ -19,7 +19,9 @@ namespace :admin do
 
   task :pollos_corte => :environment do 
     Corte.all.each do |corte|
-      corte.update_attribute(:principales, corte.count_recetas.to_json)
+      if corte.principales.nil?
+        corte.update_attribute(:principales, corte.count_recetas.to_json)
+      end
     end
   end
   
