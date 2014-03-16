@@ -32,12 +32,12 @@
       #sale_list
         .col-xs-12
           .row.sale_head
+            .col-xs-2.center_text
+              Cant.
             .col-sm-4.col-xs-2
               Artículo
             .col-xs-2.center_text
               Precio
-            .col-xs-2.center_text
-              Cant.
             .col-xs-2.center_text
               Valor
 
@@ -46,12 +46,12 @@
         =f.fields_for :sale_lines do |line_form|
           .col-xs-12
             .row
+              .col-xs-2.cantidad.center_text
+                3
               .col-sm-4.col-xs-2.p_name
                 blabla
               .col-xs-2.precio.center_text
                 $12.00
-              .col-xs-2.cantidad.center_text
-                3
               .col-xs-2.valor.center_text
                 $23
               .col-xs-2.remove

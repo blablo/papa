@@ -18,9 +18,14 @@ h1{
     line-height: 1em;
 }
 
-.sale_head, .fields{
-    font-size: 0.6em;
+.fields .p_name, .fields .cantidad{
+    font-size: 2em;
     line-height: 1.4em;
+}
+.sale_head, .fields{
+    font-size: 1em;
+    line-height: 1.4em;
+    overflow: auto;
     .col-xs-2{
 	width: 60px;
 	float: left;
@@ -34,7 +39,19 @@ h1{
     }
     .col-xs-2.p_name{
 	margin: 0;
-	width: 70px;
+	width: 80%;
+    }
+    .col-xs-2.cantidad{
+	width: 20%;
+	float: left;
+    }
+    .col-xs-2.valor{
+	width: 50%;
+	float: left;
+    }
+    .col-xs-2.precio{
+	width: 50%;
+	float: left;
     }
     .remove{
 	display: none
@@ -62,7 +79,7 @@ h1{
 }
 
 .total, .p_paga, .p_cambio{
-    font-size: 0.6em;
+    font-size: 1.3em;
     line-height: 1.2em;
     margin: 0;
 }
@@ -76,7 +93,7 @@ h1{
 
 .cliente{
     display: none;
-    font-size: 0.6em;
+    font-size: 1.6em;
     margin-top: 20px;
 }
 

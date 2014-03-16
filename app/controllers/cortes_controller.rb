@@ -102,7 +102,7 @@ load_and_authorize_resource
           gasto.update_attribute(:corte_id, @corte.id)
         end
 
-        @corte.update_attributes(:principales, @corte.count_recetas.to_json)
+        @corte.update_attribute(:principales, @corte.count_recetas.to_json)
         
         format.html { redirect_to @corte, notice: 'Corte was successfully created.' }
         format.json { render json: @corte, status: :created, location: @corte }
