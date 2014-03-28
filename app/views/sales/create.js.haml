@@ -1,0 +1,8 @@
+-if !@sale.carnes.empty?
+  -carnes = '<h2>Orden #' + Sale.no_corte.count.to_s + '</h2>'
+
+  -@sale.carnes.each do |carne|
+    -carnes += "<div style='font-size: 30px;'>" + carne.cantidad.to_s + '<small>kg</small> ' + carne.product.name + '</div>'
+  popup_print('#{raw(escape_javascript(carnes))}');
+
+location.reload();
