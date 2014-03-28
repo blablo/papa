@@ -20,7 +20,7 @@
   .cliente.col-sm-5
 
 
-=nested_form_for @sale, :html => {:class => 'sale_form'} do |f|
+=nested_form_for @sale, :html => {:class => 'sale_form'}, :remote => true do |f|
 
   =f.hidden_field :client_id, :id => "client_id"
   =f.hidden_field :total

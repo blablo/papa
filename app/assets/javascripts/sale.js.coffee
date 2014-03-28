@@ -30,6 +30,20 @@ getTotal = ->
  
   return sum
 
+popup_print = (data) ->
+  mywindow = window.open("", "my div", "height=400,width=600")
+  mywindow.document.write "<html><head><title>my div</title>"
+  
+  #optional stylesheet
+  #mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+  mywindow.document.write "</head><body >"
+  mywindow.document.write data
+  mywindow.document.write "</body></html>"
+  mywindow.print()
+  mywindow.close()
+  true
+
+window.popup_print = popup_print
 
 $(document).ready ->
   $("body").keyup((event) ->
@@ -189,3 +203,5 @@ $(document).ready ->
     $("#moneypad .cambio span").html("0")
     $("#moneypad .dado span").formatCurrency()
     $("#moneypad .cambio span").formatCurrency()
+
+

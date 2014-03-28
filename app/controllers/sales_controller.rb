@@ -28,9 +28,12 @@ load_and_authorize_resource
       Pedido.create(:orden => Sale.no_corte.count.to_s, :sale_id => @sale.id, :client_id => @sale.client_id) if @sale.domicilio
       @sale.update_attribute(:total, @sale.sale_lines.sum(:valor))
       @sale.actualiza_inventario(:baja)
-      redirect_to new_sale_url, :notice => "¡Venta Registrada! ¡Tu muy bien! :)"
+      respond_to :js
+      #respond_to :html, redirect_to(new_sale_url, :notice => "¡Venta Registrada! ¡Tu muy bien! :)")
+
     else
-      render :action => 'new'
+      render js: "alert('ma');"
+#      render :action => 'new'
     end
   end
 

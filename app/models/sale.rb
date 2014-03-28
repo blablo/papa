@@ -43,5 +43,13 @@ class Sale < ActiveRecord::Base
     end
   end
 
+  def carnes
+    tmp = []
+    self.sale_lines.each do |sl| 
+        tmp << sl if !sl.nil? and Product.carnes.include?(sl.product_id) 
+    end
+    return tmp
+  end
+
 
 end
