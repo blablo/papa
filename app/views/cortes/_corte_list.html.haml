@@ -1,12 +1,13 @@
 .col-sm-6
   %table.table
     %tr
-      %th{:colspan => 3} Ventas
+      %th{:colspan => 4} Ventas
     -@sales.each do |sale|
       %tr
+        %td=sale.orden.to_s
         %td=sale.sale_names
         %td=number_to_currency(sale.total)
-        %td.hidden-print=link_to 'Cancelar', sale, :confirm => 'Cancelar ' + number_to_currency(sale.total) + '?', :method => :delete
+        %td.hidden-print=link_to 'Cancelar', sale, :confirm => 'Cancelar ' + (sale.total.nil? ? '0' : number_to_currency(sale.total)) + '?', :method => :delete
 
 .col-sm-6
   %table.table

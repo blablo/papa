@@ -31,7 +31,7 @@ getTotal = ->
   return sum
 
 popup_print = (data) ->
-  mywindow = window.open("", "my div", "height=400,width=600")
+  mywindow = window.open("", "", "height=400,width=600")
   mywindow.document.write "<html><head><title>my div</title>"
   
   #optional stylesheet
