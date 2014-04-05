@@ -13,7 +13,10 @@ load_and_authorize_resource
 
   def new
     @sale = Sale.new
-    @sale_num = Sale.no_corte.count + 1
+
+    @sale_num = (Sale.no_corte.last.orden.to_i + 1).to_s
+
+
     @product_categories = ProductCategory.roots
 
     @inventarios = Inventario.where('existencia <= minimo')

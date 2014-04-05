@@ -46,6 +46,7 @@ popup_print = (data) ->
 window.popup_print = popup_print
 
 $(document).ready ->
+  $("time.timeago").timeago()
   $("body").keyup((event) ->
     console.log(event.keyCode)
     if $('input').is(":focus") == false and $('textarea').is(":focus") == false

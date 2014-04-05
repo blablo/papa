@@ -12,7 +12,7 @@
         -contenido += '<br />'
         -contenido += pedido.client.street + "<br /> Tel: " + pedido.client.phone if pedido.client
         .thumbnail.pedido
-          =distance_of_time_in_words(pedido.created_at, Time.now)
+          %time.timeago{:datetime => pedido.created_at}
 
           %button{:type => "button", :class => "btn btn-default popover-btn", 'data-container' => "body", 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => contenido, 'data-html' => 'true' }
             ='Orden: ' + pedido.orden
