@@ -14,8 +14,11 @@ load_and_authorize_resource
   def new
     @sale = Sale.new
 
-    @sale_num = (Sale.no_corte.last.orden.to_i + 1).to_s
-
+    if Sale.no_corte.last.nil?
+      @sale_num = '1'
+    else
+      @sale_num = (Sale.no_corte.last.orden.to_i + 1).to_s
+    end
 
     @product_categories = ProductCategory.roots
 
