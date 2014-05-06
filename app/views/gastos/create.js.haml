@@ -1,0 +1,11 @@
+$('#new_gasto').modal('hide');
+
+-if @gasto.es_caja
+  -texto = '<h2>Gasto de caja ' + Date.today.to_s + '</h2>'
+
+  -texto += "<div style='font-size: 20px;'>" + @gasto.volumen.to_s + '<small>' + @gasto.compra.medida + '</small> ' + @gasto.compra.name + '</div>'
+  
+  -texto += '<h2>Total: $' + @gasto.precio.to_s + '</h2>'
+
+  popup_print('#{raw(escape_javascript(texto))}');
+

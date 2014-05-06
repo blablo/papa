@@ -34,7 +34,7 @@ load_and_authorize_resource
         inventario = @gasto.compra.inventario
         inventario.update_attribute(:existencia, inventario.existencia + @gasto.volumen)
       end
-      format.js { render :js => "$('#new_gasto').modal('hide');"}
+      format.js 
     else
       render :action => 'new'
     end
