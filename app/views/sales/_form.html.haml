@@ -159,7 +159,7 @@
                     =image_tag(product.avatar_url(:thumb), :class => 'img-polaroid')
                     =product.name
 
-#pago_modal.modal.fade
+#pago_modal.modal.fade.hidden-print
   .modal-dialog
     .modal-content
       .modal-header
@@ -205,14 +205,14 @@
 
 
       .modal-footer
-        %button.btn{:onclick => "$('.modal').modal('hide'); window.print()"} Imprimir
-        %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('.modal').modal('hide'); window.print(); $('.sale_form').submit();"}Crédito
-        %button.btn{:onclick => "$('#sale_domicilio').val('true'); $('.modal').modal('hide'); window.print(); $('.sale_form').submit();"}Domicilio
-        %button.btn.btn-primary.pagar_btn{:onclick => "$('.modal').modal('hide'); window.print(); $('.sale_form').submit();"} Pagar
+        %button.btn{:onclick => "$('.modal').hide(); window.print()"} Imprimir
+        %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('.modal').hide(); window.print(); $('.sale_form').submit();"}Crédito
+        %button.btn{:onclick => "$('#sale_domicilio').val('true'); $('.modal').hide(); window.print(); $('.sale_form').submit();"}Domicilio
+        %button.btn.btn-primary.pagar_btn{:onclick => "$('.modal').hide(); window.print(); $('.sale_form').submit();"} Pagar
 
 
 
-#new_cliente.modal.fade
+#new_cliente.modal.fade.hidden-print
   .modal-dialog
     .modal-content
       .modal-header
