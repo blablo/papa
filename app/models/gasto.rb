@@ -2,6 +2,7 @@ class Gasto < ActiveRecord::Base
   attr_accessible :compra_id, :volumen, :precio, :fecha, :nota, :es_caja, :subtotal, :iva, :proveedor_id, :factura
   belongs_to :compra
   belongs_to :proveedor
+  belongs_to :company
 
   validates :compra_id, :presence => true
   validates :volumen, :presence => true

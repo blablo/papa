@@ -3,6 +3,7 @@ class RecetaLine < ActiveRecord::Base
   belongs_to :receta
   belongs_to :product
   belongs_to :compra
+  belongs_to :company
   
 end
 

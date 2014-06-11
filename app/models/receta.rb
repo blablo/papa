@@ -3,6 +3,6 @@ class Receta < ActiveRecord::Base
   has_many :receta_lines
   belongs_to :product
   accepts_nested_attributes_for :receta_lines
-
+  belongs_to :company
 
 end

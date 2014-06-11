@@ -4,6 +4,7 @@ class Compra < ActiveRecord::Base
   has_many :gastos
   has_one :inventario
   belongs_to :compra_category
+  belongs_to :company
 
   def self.mas_comun
     comunes = []
