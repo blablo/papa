@@ -27,13 +27,15 @@ load_and_authorize_resource
   end
 
   def create
+
     @sale = Sale.new(params[:sale])
     @sale.seller_id = current_user.id if current_user
       @orden = '1'
       if Sale.no_corte.count > 0
         @orden = (Sale.no_corte.last.orden.to_i + 1).to_s
       end
- 
+
+
     if @sale.save
 
 
@@ -49,7 +51,8 @@ load_and_authorize_resource
       #respond_to :html, redirect_to(new_sale_url, :notice => "¡Venta Registrada! ¡Tu muy bien! :)")
 
     else
-      render js: "alert('ma');"
+
+      render js: "alert('" + @sale.errors.full_messages[0] + "');"
 #      render :action => 'new'
     end
   end

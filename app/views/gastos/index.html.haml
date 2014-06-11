@@ -13,7 +13,7 @@
   - for gasto in @gastos
     %tr
       %td
-        =gasto.compra_id.to_s + "-" + gasto.compra.name
+        =link_to(gasto.compra_id.to_s + "-" + gasto.compra.name, gastos_url + '?compra_id='+gasto.compra_id.to_s)
         -if !gasto.nota.blank?
           ='('+gasto.nota+')'
       %td= gasto.volumen

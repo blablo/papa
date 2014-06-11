@@ -9,6 +9,14 @@ class Sale < ActiveRecord::Base
 
   scope :no_corte, where(:corte_id => nil)
 
+  validate :absolute_total, :on => :create
+
+  def absolute_total
+
+    if self.sale_lines.inject(0){|v, sl| v + sl.valor } <= 0
+      errors.add(:total, "no puede ser negativo o zero. Para registrar compras dale click en NUEVA COMPRA.")
+    end
+  end
 
   def sale_names
     nombres = []

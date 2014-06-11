@@ -41,4 +41,4 @@ gem "ancestry"
 gem 'jquery-turbolinks'
 
 gem 'activeadmin', github: "gregbell/active_admin"		 
-#gem "byebug", :group => [:development]
+gem "byebug", :group => [:development]

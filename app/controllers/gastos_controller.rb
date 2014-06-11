@@ -1,11 +1,16 @@
 class GastosController < ApplicationController
 load_and_authorize_resource
   def index
-    @gastos = Gasto.all
+    if params[:compra_id]
+      @gastos = Gasto.where(:compra_id => params[:compra_id]).order('created_at desc')
+    else
+      @gastos = Gasto.order('created_at desc')
+    end
   end
 
   def show
     @gasto = Gasto.find(params[:id])
+
   end
 
   def new

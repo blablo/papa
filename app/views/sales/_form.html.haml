@@ -122,9 +122,9 @@
             %button.btn.btn-large.btn-default.number.cero{:type=>"button"} 0
           %td
             %button.btn.btn-large.btn-default.punto{:type=>"button"} .
-
-
-
+        %tr
+          %td{:colspan=>"4"}
+            %button.btn.btn-large.btn-default.number.cero{:type=>"button", :onclick => "window.print();"} Abrir Caja
 
   .row
     #menu_list.col-lg-12.col-md-12.col-sm-12.col-xs-12
@@ -205,10 +205,10 @@
 
 
       .modal-footer
-        %button.btn{:onclick => "$('.modal').hide(); window.print()"} Imprimir
-        %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('.modal').hide(); window.print(); $('.sale_form').submit();"}Crédito
-        %button.btn{:onclick => "$('#sale_domicilio').val('true'); $('.modal').hide(); window.print(); $('.sale_form').submit();"}Domicilio
-        %button.btn.btn-primary.pagar_btn{:onclick => "$('.modal').hide(); window.print(); $('.sale_form').submit();"} Pagar
+        %button.btn{:onclick => "$('.modal').hide(); window.print(); $('.modal').modal('hide');"} Imprimir
+        %button.btn{:onclick => "$('.sale_form').submit();"} Crédito
+        %button.btn{:onclick => "if(confirm('¿Preguntaste si necesita cambio?')){$('.sale_form').submit();}"} Domicilio
+        %button.btn.btn-primary.pagar_btn{:onclick => "$('.sale_form').submit();"} Pagar
 
 
 
