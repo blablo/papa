@@ -206,7 +206,7 @@
 
       .modal-footer
         %button.btn{:onclick => "$('.modal').hide(); window.print(); $('.modal').modal('hide');"} Imprimir
-        %button.btn{:onclick => "$('.sale_form').submit();"} Crédito
+        %button.btn{:onclick => "$('#sale_por_pagar').val('true'); $('#sale_domicilio').val('true'); $('.sale_form').submit();"} Crédito
         %button.btn{:onclick => "if(confirm('¿Preguntaste si necesita cambio?')){$('.sale_form').submit();}"} Domicilio
         %button.btn.btn-primary.pagar_btn{:onclick => "$('.sale_form').submit();"} Pagar
 
