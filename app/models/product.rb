@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name, :price, :product_category_id, :avatar, :avatar_cache, :company_id
+  attr_accessible :name, :price, :product_category_id, :avatar, :avatar_cache, :company_id, :company_id
   mount_uploader :avatar, AvatarUploader
   belongs_to :product_category
   has_one :receta

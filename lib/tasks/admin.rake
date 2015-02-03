@@ -26,6 +26,7 @@ namespace :admin do
   end
   
   task :add_company => :environment do 
+    Company.find_or_create_by_id_and_name(1, "Rico Don Pollo") 
     User.update_all(:company_id => 1)
     Product.update_all(:company_id => 1)
     ProductCategory.update_all(:company_id => 1)
@@ -36,6 +37,7 @@ namespace :admin do
     Proveedor.update_all(:company_id => 1)
     Receta.update_all(:company_id => 1)
     Sale.update_all(:company_id => 1)
+    Corte.update_all(:company_id => 1)
   end
 
 end

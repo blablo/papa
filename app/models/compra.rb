@@ -1,5 +1,5 @@
 class Compra < ActiveRecord::Base
-  attr_accessible :name, :tipo, :medida, :avatar, :avatar_cache, :compra_category_id
+  attr_accessible :name, :tipo, :medida, :avatar, :avatar_cache, :compra_category_id, :company_id
   mount_uploader :avatar, AvatarUploader
   has_many :gastos
   has_one :inventario
