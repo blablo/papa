@@ -1,4 +1,4 @@
-class current_company.inventariossController < ApplicationController
+class InventariosController < ApplicationController
   # GET /inventarios
   # GET /inventarios.json
   def index
