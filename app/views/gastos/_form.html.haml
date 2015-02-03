@@ -47,15 +47,16 @@
 
     =f.hidden_field :compra_id
   .clearfix
-  .well
-    %label Volumen
-    =@ultimo_gasto.volumen
-    %br
-    %label Costo
-    =number_to_currency(@ultimo_gasto.precio)
-    %br
-    %label Precio Unitario
-    =number_to_currency(@ultimo_gasto.precio/@ultimo_gasto.volumen)
-    %br
-    %label Fecha
-    =@ultimo_gasto.created_at.strftime('%d/%m/%Y') + ' -> hace ' + (Date.today - @ultimo_gasto.created_at.to_date).to_i.to_s + " dias"
+  -if @ultimo_gasto
+    .well
+      %label Volumen
+      =@ultimo_gasto.volumen
+      %br
+      %label Costo
+      =number_to_currency(@ultimo_gasto.precio)
+      %br
+      %label Precio Unitario
+      =number_to_currency(@ultimo_gasto.precio/@ultimo_gasto.volumen)
+      %br
+      %label Fecha
+      =@ultimo_gasto.created_at.strftime('%d/%m/%Y') + ' -> hace ' + (Date.today - @ultimo_gasto.created_at.to_date).to_i.to_s + " dias"

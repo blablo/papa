@@ -5,7 +5,7 @@ ActiveAdmin.register Product do
     f.inputs "Details" do
       f.input :name
       f.input :price
-      f.input :product_category
+      f.input :product_category, collection: ProductCategory.where(company_id: current_user.company_id).order('name')
       f.input :avatar
     end
     f.actions
@@ -17,7 +17,7 @@ ActiveAdmin.register Product do
     end
     column :name
     column 'Categoría' do |pro|
-      pro.product_category.name.capitalize
+      pro.product_category.name.capitalize if pro.product_category
     end
     column :price
 

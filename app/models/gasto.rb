@@ -20,8 +20,8 @@ class Gasto < ActiveRecord::Base
     self.compra.name
   end
 
-  def self.mas_comun
-    self.order('count_id desc').group('compra_id').limit(6).count('id')
+  def self.mas_comun(company_id)
+    self.where(company_id: company_id).order('count_id desc').group('compra_id').limit(6).count('id')
   end
 
 
