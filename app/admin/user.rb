@@ -19,5 +19,12 @@ index do
     end
     f.actions
   end
+
+  controller do
+
+    def scoped_collection
+      current_user.company.users
+    end
+  end
   
 end

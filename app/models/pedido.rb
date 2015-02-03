@@ -1,5 +1,6 @@
 class Pedido < ActiveRecord::Base
-  attr_accessible :cambio, :client_id, :orden, :sale_id
+  attr_accessible :cambio, :client_id, :orden, :sale_id, :company_id
   belongs_to :sale
   belongs_to :client
+  belongs_to :company
 end

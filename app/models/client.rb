@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
-  attr_accessible :name, :phone, :street, :street2, :district, :note, :latitude, :longitude
+  attr_accessible :name, :phone, :street, :street2, :district, :note, :latitude, :longitude, :company_id
+  belongs_to :company
 
   validate :format_phone
 

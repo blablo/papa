@@ -1,17 +1,17 @@
 class RecetasController < ApplicationController
 load_and_authorize_resource
   def index
-    @recetas = Receta.all
+    @recetas = current_company.recetas.all
   end
 
   def new
-    @receta = Receta.new
-    @productos_no_receta = Product.no_receta 
+    @receta = current_company.recetas.new
+    @productos_no_receta = current_company.products.no_receta 
 
   end
 
   def create
-    @receta = Receta.new(params[:receta])
+    @receta = current_company.recetas.new(params[:receta])
 
 
     if @receta.save
@@ -23,14 +23,14 @@ load_and_authorize_resource
   end
 
   def edit
-    @receta = Receta.find(params[:id])
-    @productos_no_receta = Product.no_receta + [@receta.product]
+    @receta = current_company.recetas.find(params[:id])
+    @productos_no_receta = current_company.products.no_receta + [@receta.product]
 
   end
 
 
   def update
-    @receta = Receta.find(params[:id])
+    @receta = current_company.recetas.find(params[:id])
 
 
     if @receta.update_attributes(params[:receta])
@@ -43,7 +43,7 @@ load_and_authorize_resource
 
 
   def destroy
-    @receta = Receta.find(params[:id])
+    @receta = current_company.recetas.find(params[:id])
 
     @receta.destroy
 

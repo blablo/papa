@@ -2,25 +2,25 @@ class GastosController < ApplicationController
 load_and_authorize_resource
   def index
     if params[:compra_id]
-      @gastos = Gasto.where(:compra_id => params[:compra_id]).order('created_at desc')
+      @gastos = current_company.gastos.where(:compra_id => params[:compra_id]).order('created_at desc')
     else
-      @gastos = Gasto.order('created_at desc')
+      @gastos = current_company.gastos.order('created_at desc')
     end
   end
 
   def show
-    @gasto = Gasto.find(params[:id])
+    @gasto = current_company.gastos.find(params[:id])
 
   end
 
   def new
-    @gasto = Gasto.new
-    @proveedores = Proveedor.all
+    @gasto = current_company.gastos.build
+    @proveedores = current_company.proveedores
 
     if params[:compra_id]
       @gasto.compra_id = params[:compra_id]
     end
-    @ultimo_gasto = Gasto.where(:compra_id => params[:compra_id]).last
+    @ultimo_gasto = current_company.gastos.where(:compra_id => params[:compra_id]).last
 
     respond_to do |format|
       format.js
@@ -29,7 +29,7 @@ load_and_authorize_resource
   end
 
   def create
-    @gasto = Gasto.new(params[:gasto])
+    @gasto = current_company.gastos.build(params[:gasto])
     respond_to do |format|
 
     if @gasto.save
@@ -47,11 +47,11 @@ load_and_authorize_resource
   end
 
   def edit
-    @gasto = Gasto.find(params[:id])
+    @gasto = current_company.gastos.find(params[:id])
   end
 
   def update
-    @gasto = Gasto.find(params[:id])
+    @gasto = current_company.gastos.find(params[:id])
     if @gasto.update_attributes(params[:gasto])
 
       redirect_to @gasto, :notice  => "Successfully updated gasto."
@@ -61,7 +61,7 @@ load_and_authorize_resource
   end
 
   def destroy
-    @gasto = Gasto.find(params[:id])
+    @gasto = current_company.gastos.find(params[:id])
     @gasto.destroy
     redirect_to :back, :notice => "Se ha cancelado el gasto."
   end

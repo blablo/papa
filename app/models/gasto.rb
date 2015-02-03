@@ -1,7 +1,8 @@
 class Gasto < ActiveRecord::Base
-  attr_accessible :compra_id, :volumen, :precio, :fecha, :nota, :es_caja, :subtotal, :iva, :proveedor_id, :factura
+  attr_accessible :compra_id, :volumen, :precio, :fecha, :nota, :es_caja, :subtotal, :iva, :proveedor_id, :factura, :company_id
   belongs_to :compra
   belongs_to :proveedor
+  belongs_to :company
 
   validates :compra_id, :presence => true
   validates :volumen, :presence => true
@@ -19,8 +20,8 @@ class Gasto < ActiveRecord::Base
     self.compra.name
   end
 
-  def self.mas_comun
-    self.order('count_id desc').group('compra_id').limit(6).count('id')
+  def self.mas_comun(company_id)
+    self.where(company_id: company_id).order('count_id desc').group('compra_id').limit(6).count('id')
   end
 
 

@@ -1,7 +1,8 @@
 class Sale < ActiveRecord::Base
-  attr_accessible :client_id, :seller_id, :corte_id, :total, :sale_lines_attributes, :por_pagar, :nota, :domicilio
+  attr_accessible :client_id, :seller_id, :corte_id, :total, :sale_lines_attributes, :por_pagar, :nota, :domicilio, :company_id, :orden
   has_many :sale_lines, :dependent => :destroy
   has_many :pedidos, :dependent => :destroy
+  belongs_to :company
 
   belongs_to :client
 

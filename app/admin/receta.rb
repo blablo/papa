@@ -1,5 +1,18 @@
 ActiveAdmin.register Receta do
 
+  controller do
+    def scoped_collection
+      current_user.company.recetas
+    end
+    def update
+      params[:receta].merge!({ company_id: current_user.company_id })
+      update!
+    end
+    def create
+      params[:receta].merge!({ company_id: current_user.company_id })
+      create!
+    end
+  end
 
 
     form do |f|

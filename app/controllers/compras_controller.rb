@@ -1,20 +1,20 @@
 class ComprasController < ApplicationController
 load_and_authorize_resource
   def index
-    @compras = Compra.all
-    @comunes = Compra.mas_comun
+    @compras = current_company.compras.all
+    @comunes = current_company.compras.mas_comun(current_company.id)
   end
 
   def show
-    @compra = Compra.find(params[:id])
+    @compra = current_company.compras.find(params[:id])
   end
 
   def new
-    @compra = Compra.new
+    @compra = current_company.compras.new
   end
 
   def create
-    @compra = Compra.new(params[:compra])
+    @compra = current_company.compras.new(params[:compra])
     if @compra.save
       redirect_to @compra, :notice => "Successfully created compra."
     else
@@ -23,11 +23,11 @@ load_and_authorize_resource
   end
 
   def edit
-    @compra = Compra.find(params[:id])
+    @compra = current_company.compras.find(params[:id])
   end
 
   def update
-    @compra = Compra.find(params[:id])
+    @compra = current_company.compras.find(params[:id])
     if @compra.update_attributes(params[:compra])
       redirect_to @compra, :notice  => "Successfully updated compra."
     else
@@ -36,7 +36,7 @@ load_and_authorize_resource
   end
 
   def destroy
-    @compra = Compra.find(params[:id])
+    @compra = current_company.compras.find(params[:id])
     @compra.destroy
     redirect_to compras_url, :notice => "Successfully destroyed compra."
   end

@@ -1,6 +1,6 @@
 class PedidosController < ApplicationController
   def destroy
-    @pedido = Pedido.find(params[:id])
+    @pedido = current_company.pedidos.find(params[:id])
     @pedido.destroy
     redirect_to :back, :notice => "Pedido entregado. :)"
 

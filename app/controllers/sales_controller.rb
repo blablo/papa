@@ -2,37 +2,37 @@
 class SalesController < ApplicationController
 load_and_authorize_resource
   def index
-    @sales = Sale.order('created_at desc')
-    @sales_pagar = Sale.where(:por_pagar => true)
+    @sales = current_company.sales.order('created_at desc')
+    @sales_pagar = current_company.sales.where(:por_pagar => true)
 
   end
 
   def show
-    @sale = Sale.find(params[:id])
+    @sale = current_company.sales.find(params[:id])
   end
 
   def new
-    @sale = Sale.new
+    @sale = current_company.sales.new
 
-    if Sale.no_corte.last.nil?
+    if current_company.sales.no_corte.last.nil?
       @sale_num = '1'
     else
-      @sale_num = (Sale.no_corte.last.orden.to_i + 1).to_s
+      @sale_num = (current_company.sales.no_corte.last.orden.to_i + 1).to_s
     end
 
-    @product_categories = ProductCategory.roots
+    @product_categories = current_company.product_categories.roots
 
-    @inventarios = Inventario.where('existencia <= minimo')
-    @pedidos = Pedido.all
+    @inventarios = current_company.inventarios.where('existencia <= minimo')
+    @pedidos = current_company.pedidos.all
   end
 
   def create
 
-    @sale = Sale.new(params[:sale])
+    @sale = current_company.sales.new(params[:sale])
     @sale.seller_id = current_user.id if current_user
       @orden = '1'
-      if Sale.no_corte.count > 0
-        @orden = (Sale.no_corte.last.orden.to_i + 1).to_s
+      if current_company.sales.no_corte.count > 0
+        @orden = (current_company.sales.no_corte.last.orden.to_i + 1).to_s
       end
 
 
@@ -43,7 +43,7 @@ load_and_authorize_resource
 
       @sale.update_attribute(:orden, @orden)
 
-      Pedido.create(:orden => @orden, :sale_id => @sale.id, :client_id => @sale.client_id) if @sale.domicilio
+      Pedido.create(:orden => @orden, :sale_id => @sale.id, :client_id => @sale.client_id, :company_id => current_company.id) if @sale.domicilio
 
       @sale.update_attribute(:total, @sale.sale_lines.sum(:valor))
       @sale.actualiza_inventario(:baja)
@@ -58,13 +58,14 @@ load_and_authorize_resource
   end
 
   def edit
-    @sale = Sale.find(params[:id])
-    @product_categories = ProductCategory.roots
+    @sale = current_company.sales.find(params[:id])
+    @product_categories = current_company.product_categories.roots
+
 
   end
 
   def update
-    @sale = Sale.find(params[:id])
+    @sale = current_company.sales.find(params[:id])
     @sale.seller_id = current_user.id if current_user
 
 
@@ -77,13 +78,13 @@ load_and_authorize_resource
   end
   
   def pagar
-    @sale = Sale.find(params[:id])
+    @sale = current_company.sales.find(params[:id])
     @sale.update_attribute(:por_pagar, false)
     redirect_to sales_url
   end
 
   def destroy
-    @sale = Sale.find(params[:id])
+    @sale = current_company.sales.find(params[:id])
     @sale.actualiza_inventario(:sube)
     @sale.destroy
     redirect_to :back, :notice => "Se ha cancelado la venta."

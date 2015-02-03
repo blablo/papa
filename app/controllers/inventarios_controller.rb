@@ -1,8 +1,8 @@
-class InventariosController < ApplicationController
+class current_company.inventariossController < ApplicationController
   # GET /inventarios
   # GET /inventarios.json
   def index
-    @inventarios = Inventario.all
+    @inventarios = current_company.inventarios.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class InventariosController < ApplicationController
   # GET /inventarios/1
   # GET /inventarios/1.json
   def show
-    @inventario = Inventario.find(params[:id])
+    @inventario = current_company.inventarios.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,7 @@ class InventariosController < ApplicationController
   # GET /inventarios/new
   # GET /inventarios/new.json
   def new
-    @inventario = Inventario.new
+    @inventario = current_company.inventarios.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +34,17 @@ class InventariosController < ApplicationController
 
   # GET /inventarios/1/edit
   def edit
-    @inventario = Inventario.find(params[:id])
+    @inventario = current_company.inventarios.find(params[:id])
   end
 
   # POST /inventarios
   # POST /inventarios.json
   def create
-    @inventario = Inventario.new(params[:inventario])
+    @inventario = current_company.inventarios.build(params[:inventario])
 
     respond_to do |format|
       if @inventario.save
-        format.html { redirect_to @inventario, notice: 'Inventario was successfully created.' }
+        format.html { redirect_to @inventario, notice: 'current_company.inventarios was successfully created.' }
         format.json { render json: @inventario, status: :created, location: @inventario }
       else
         format.html { render action: "new" }
@@ -56,11 +56,11 @@ class InventariosController < ApplicationController
   # PUT /inventarios/1
   # PUT /inventarios/1.json
   def update
-    @inventario = Inventario.find(params[:id])
+    @inventario = current_company.inventarios.find(params[:id])
 
     respond_to do |format|
       if @inventario.update_attributes(params[:inventario])
-        format.html { redirect_to @inventario, notice: 'Inventario was successfully updated.' }
+        format.html { redirect_to @inventario, notice: 'current_company.inventarios was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,7 +72,7 @@ class InventariosController < ApplicationController
   # DELETE /inventarios/1
   # DELETE /inventarios/1.json
   def destroy
-    @inventario = Inventario.find(params[:id])
+    @inventario = current_company.inventarios.find(params[:id])
     @inventario.destroy
 
     respond_to do |format|

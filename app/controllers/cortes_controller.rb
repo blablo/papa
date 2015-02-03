@@ -3,12 +3,12 @@ load_and_authorize_resource
   # GET /cortes
   # GET /cortes.json
   def index
-    @cortes = Corte.order('created_at desc').limit(8)
-    @sales = Sale.no_corte
-    @gastos = Gasto.no_corte_caja
-    @corte = Corte.new
-    @corte_anterior = Corte.last rescue nil
-    @inventario = Inventario.all
+    @cortes = current_company.cortes.order('created_at desc').limit(8)
+    @sales = current_company.sales.no_corte
+    @gastos = current_company.gastos.no_corte_caja
+    @corte = current_company.cortes.new
+    @corte_anterior = current_company.cortes.last rescue nil
+    @inventario = current_company.inventarios.all
     @recetas = { }
 
     @sales.each do |sale|
@@ -35,7 +35,7 @@ load_and_authorize_resource
   # GET /cortes/1
   # GET /cortes/1.json
   def show
-    @corte = Corte.find(params[:id])
+    @corte = current_company.cortes.find(params[:id])
     @sales = @corte.sales
     @gastos = @corte.gastos
 
@@ -64,7 +64,7 @@ load_and_authorize_resource
   # GET /cortes/new
   # GET /cortes/new.json
   def new
-    @corte = Corte.new
+    @corte = current_company.cortes.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -74,15 +74,15 @@ load_and_authorize_resource
 
   # GET /cortes/1/edit
   def edit
-    @corte = Corte.find(params[:id])
+    @corte = current_company.cortes.find(params[:id])
   end
 
   # POST /cortes
   # POST /cortes.json
   def create
-    @corte = Corte.new(params[:corte])
-    @sales = Sale.no_corte
-    @gastos = Gasto.no_corte_caja
+    @corte = current_company.cortes.new(params[:corte])
+    @sales = current_company.sales.no_corte
+    @gastos = current_company.gastos.no_corte_caja
 
     @corte.total_venta = @sales.sum(:total)
     @corte.total_gastos = @gastos.sum(:precio)
@@ -104,7 +104,7 @@ load_and_authorize_resource
 
         @corte.update_attribute(:principales, @corte.count_recetas.to_json)
         
-        format.html { redirect_to @corte, notice: 'Corte was successfully created.' }
+        format.html { redirect_to @corte, notice: 'current_company.cortes was successfully created.' }
         format.json { render json: @corte, status: :created, location: @corte }
       else
         format.html { render action: "new" }
@@ -116,11 +116,11 @@ load_and_authorize_resource
   # PUT /cortes/1
   # PUT /cortes/1.json
   def update
-    @corte = Corte.find(params[:id])
+    @corte = current_company.cortes.find(params[:id])
 
     respond_to do |format|
       if @corte.update_attributes(params[:corte])
-        format.html { redirect_to @corte, notice: 'Corte was successfully updated.' }
+        format.html { redirect_to @corte, notice: 'current_company.cortes was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -132,7 +132,7 @@ load_and_authorize_resource
   # DELETE /cortes/1
   # DELETE /cortes/1.json
   def destroy
-    @corte = Corte.find(params[:id])
+    @corte = current_company.cortes.find(params[:id])
     @corte.destroy
 
     respond_to do |format|
