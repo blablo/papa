@@ -35,11 +35,9 @@ load_and_authorize_resource
         @orden = (current_company.sales.no_corte.last.orden.to_i + 1).to_s
       end
 
+    @sale.sale_lines.each{|sl| sl.company_id = @sale.company_id}
 
     if @sale.save
-
-
-     
 
       @sale.update_attribute(:orden, @orden)
 

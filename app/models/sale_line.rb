@@ -4,6 +4,6 @@ class SaleLine < ActiveRecord::Base
   belongs_to :company
 
   before_validation do
-    self.company_id = self.product.company_id
+    self.company_id ||= self.product.company_id
   end
 end
