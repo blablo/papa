@@ -6,8 +6,8 @@ load_and_authorize_resource
     @cortes = current_company.cortes.order('created_at desc').limit(8)
     @sales = current_company.sales.no_corte
     @gastos = current_company.gastos.no_corte_caja
-    @corte = current_company.cortes.new
     @corte_anterior = current_company.cortes.last rescue nil
+    @corte = current_company.cortes.new
     @inventario = current_company.inventarios.all
     @recetas = { }
 
@@ -86,7 +86,6 @@ load_and_authorize_resource
 
     @corte.total_venta = @sales.sum(:total)
     @corte.total_gastos = @gastos.sum(:precio)
-
 
     respond_to do |format|
       
