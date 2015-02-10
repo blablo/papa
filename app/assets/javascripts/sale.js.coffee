@@ -100,6 +100,13 @@ $(document).ready ->
           $(".option_5:visible").click()
         when 85
           $(".option_6:visible").click()
+        when 74
+          $(".option_7:visible").click()
+        when 75
+          $(".option_8:visible").click()
+        when 76
+          $(".option_9:visible").click()
+
   ).keydown (event) ->
     event.preventDefault()  if event.which is 13
 

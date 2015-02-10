@@ -13,7 +13,7 @@ load_and_authorize_resource
 
   def new
     @sale = current_company.sales.new
-
+    @current_company = current_company
     if current_company.sales.no_corte.last.nil?
       @sale_num = '1'
     else
