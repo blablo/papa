@@ -1,10 +1,12 @@
--letras = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I']
+-letras = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'J', 'K', 'L']
 .row
   .col-sm-2.info_store
-    %h1 Rico Don Pollo
-    Sierra de Mazamitla #5814
+    %h1=@current_company.name
+    =@current_company.address
     %br
-    36-32-19-53
+    =@current_company.phone
+    %br
+    =@current_company.webpage
     %br
     %br
     Recibo de Venta
