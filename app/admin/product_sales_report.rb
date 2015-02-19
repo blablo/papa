@@ -2,7 +2,8 @@
 ActiveAdmin.register_page "Product Sales Report" do
   content do
 
-    @cortes = current_user.company.cortes.includes(sales: [ sale_lines: [:product] ]).where('MONTH(fecha) = ? and YEAR(fecha) = ?', 11, 2014)
+    @cortes = current_user.company.cortes.includes(sales: [ sale_lines: [:product] ])
+#.where('MONTH(fecha) = ? and YEAR(fecha) = ?', 11, 2014)
     @prod = ""
     @wday = ['7D', '1L', '2M', '3X', '4J', '5V', '6S']
 
@@ -25,7 +26,7 @@ ActiveAdmin.register_page "Product Sales Report" do
                 "'hora': '" + sl.created_at.strftime('%H') + "'," +
                 "'año': '" + corte.fecha.strftime('%Y') + "'," +
                 "'mes': '" + corte.fecha.strftime('%m') + "'," +
-                "'dia': '" + corte.fecha.strftime('%d') + "'," +
+                "'dia': '" + corte.fecha.strftime('%djs') + "'," +
                 "'dia semana': '" + @wday[corte.fecha.strftime('%w').to_i] + "'},"
             end
         end
