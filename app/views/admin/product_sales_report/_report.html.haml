@@ -1,0 +1,33 @@
+
+
+-# -cortes.each do |corte|
+-#   -corte.sales.each do |sale|
+-#     -sale.sale_lines.each do |sl|
+-#       -puts 'a'
+#output
+  output
+
+:javascript
+  $(function(){
+  var derivers = $.pivotUtilities.derivers;
+  var mps = [#{prod}];
+  
+
+  $("#output").pivotUI(mps, {
+  derivedAttributes: {
+  "Age Bin": derivers.bin("Age", 10),
+  "Gender Imbalance": function(mp) {
+  return mp["Gender"] == "Male" ? 1 : -1;
+  }
+  },
+  rows: ["producto"],
+  cols: ["cantidad"],
+  vals: ["Age"],
+  rendererName: "Heatmap"
+
+  }, false, 'es');
+  
+  });
+
+
+

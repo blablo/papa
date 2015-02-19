@@ -28,7 +28,19 @@
         %li.list-group-item
           %span.badge=number_with_precision(value, :precision => 2)
           =key
-
+  .well
+    -products = {}
+    %h3 Vendido por producto
+    %ul.list-group
+      -@sales.each do |sale|
+        -sale.sale_lines.each do |sl|
+          -if sl.product
+            -if products[sl.product.name]
+              -products[sl.product.name] = products[sl.product.name] + 1
+            -else 
+              -products[sl.product.name] = 1
+      -products.each_pair do |key, value|
+        %li.list-group-item=raw("<b>" + key + "</b>: " + value.to_s)
 
 
 

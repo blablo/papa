@@ -31,10 +31,6 @@
             %li
               =link_to(raw("<span class='glyphicon glyphicon-lock'></span> <span class='txt'>Corte</span>"), cortes_url)
 
-            -if current_user and current_user.has_role? :admin
-              %li
-                =link_to("Reportes", reports_url)
-
 
 
       / ! end of .container
