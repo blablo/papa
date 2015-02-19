@@ -22,9 +22,11 @@ ActiveAdmin.register_page "Product Sales Report" do
                 "'cantidad': " + sl.cantidad.round(1).to_s + "," +
                 "'domicilio': '" + sale.domicilio.to_s + "'," +
                 "'cliente': '" + cliente + "'," +
+                "'hora': '" + sl.created_at.strftime('%H') + "'," +
                 "'año': '" + corte.fecha.strftime('%Y') + "'," +
                 "'mes': '" + corte.fecha.strftime('%m') + "'," +
-                "'dia': '" + @wday[corte.fecha.strftime('%w').to_i] + "'},"
+                "'dia': '" + corte.fecha.strftime('%d') + "'," +
+                "'dia semana': '" + @wday[corte.fecha.strftime('%w').to_i] + "'},"
             end
         end
       end
