@@ -2,8 +2,6 @@
   .col-sm-6
     %h1
       Compras
-      -if current_user and current_user.has_role? :admin
-        %small=link_to "New Compra", new_compra_path
   .col-sm-6
     %form
       %input.search-query.input-lg{:placeholder => "Busqueda", :type => "text", :id => 'search', :class => "form-control"}

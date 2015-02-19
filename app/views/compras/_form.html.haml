@@ -7,7 +7,7 @@
     = f.text_field :medida
   %p
     =f.label :compra_category_id
-    =f.select :compra_category_id, CompraCategory.all.collect {|p| [ p.name, p.id ]}
+    =f.select :compra_category_id, @categories.collect {|p| [ p.name, p.id ]}
 
   %p
     = f.label :avatar
