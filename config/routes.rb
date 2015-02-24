@@ -14,6 +14,7 @@ end
 
   resources :cortes
 
+  resources :cancellations
 
   resources :sales do
     member do 

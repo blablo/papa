@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
-  attr_accessible :logo, :name
+  attr_accessible :logo, :name, :rfc, :address, :webpage, :phone, :ticket_copies, :points_system, :points_rate
+
   has_many :clients
   has_many :compras
   has_many :compra_categories
@@ -15,4 +16,8 @@ class Company < ActiveRecord::Base
   has_many :sales
   has_many :sale_lines
   has_many :users
+  has_many :cancellations
+
+  mount_uploader :logo, AvatarUploader
+
 end

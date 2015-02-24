@@ -1,4 +1,8 @@
-$('#sale_por_pagar').val('true'); $('.modal').hide(); window.print(); 
+$('#sale_por_pagar').val('true'); 
+$('.modal').hide();
+-current_user.company.ticket_copies.times do 
+  window.print(); 
+
 -if !@sale.carnes.empty?
   -carnes = '<h2>Orden #' + Sale.no_corte.count.to_s + '</h2>'
 

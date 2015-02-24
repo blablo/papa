@@ -1,4 +1,5 @@
 ActiveAdmin.register Compra do
+  actions :all, :except => [:destroy]
   controller do
     def scoped_collection
       current_user.company.compras

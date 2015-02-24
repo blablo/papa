@@ -1,0 +1,5 @@
+-if @cancellation.errors.blank?
+  $('#new_gasto').modal('hide');
+  location.reload();
+-else
+  alert('Por favor escribe por qué estas cancelando.');

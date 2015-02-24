@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 ActiveAdmin.register Product do
+  actions :all, :except => [:destroy]
 
   form do |f|
     f.inputs "Details" do

@@ -4,15 +4,15 @@
     .row
       =render 'corte_list'
       .col-sm-6
-        .well
-          %h3 Inventario
-          %ul.list-group
-            -@inventario.each do |inventario|
-              %li.list-group-item
-                %span.badge=number_with_precision(inventario.existencia, :precision => 2)
-                =inventario.compra.name
-                %span.label.label-default=number_with_precision(@recetas[inventario.compra.name] + inventario.existencia, :precision => 2) if @recetas[inventario.compra.name]
-                %span.label.label-default=number_with_precision(inventario.existencia, :precision => 2) if !@recetas[inventario.compra.name]
+
+        %h3 Inventario
+        %ul.list-group
+          -@inventario.each do |inventario|
+            %li.list-group-item
+              %span.badge=number_with_precision(inventario.existencia, :precision => 2)
+              =inventario.compra.name
+              %span.label.label-default=number_with_precision(@recetas[inventario.compra.name] + inventario.existencia, :precision => 2) if @recetas[inventario.compra.name]
+              %span.label.label-default=number_with_precision(inventario.existencia, :precision => 2) if !@recetas[inventario.compra.name]
 
 
     .col-sm-12
