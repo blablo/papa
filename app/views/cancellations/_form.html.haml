@@ -1,0 +1,12 @@
+= form_for(@cancellation, :remote => true) do |f|
+  =f.hidden_field :sale_id
+  .col-sm-12
+    .alert.alert-warning
+      %strong Productos a Cancelar:
+      =@sale.sale_names
+    .form-group
+      %label ¿Por qué cancelas?
+      =f.text_field :reason, :class => 'form-control col-sm-12'
+
+    .total
+      =number_to_currency(@sale.total)

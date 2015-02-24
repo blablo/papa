@@ -7,7 +7,7 @@
         %td=sale.orden.to_s
         %td=sale.sale_names
         %td=number_to_currency(sale.total)
-        %td.hidden-print=link_to 'Cancelar', sale, :confirm => 'Cancelar ' + (sale.total.nil? ? '0' : number_to_currency(sale.total)) + '?', :method => :delete
+        %td.hidden-print=link_to('Cancelar', new_cancellation_url + "?sale_id=" + sale.id.to_s, :remote => true, :class=>"icon")
 
 .col-sm-6
   %table.table
@@ -18,30 +18,43 @@
         %td=gasto.name
         %td=number_to_currency(gasto.precio)
         %td.hidden-print=link_to 'Cancelar', gasto, :confirm => 'Cancelar ' + number_to_currency(gasto.precio) + '?', :method => :delete
+
+  %table.table
+    %tr
+      %th{:colspan => 2} Cancelaciones
+    -@cancellations.each do |can|
+      %tr
+        %td=can.desc
+        %td=number_to_currency(can.total)
+
+
 .clearfix
 
 .col-sm-6
-  .well
-    %h3 Vendido el día de hoy
-    %ul.list-group
-      -@recetas.each_pair do |key, value|
-        %li.list-group-item
-          %span.badge=number_with_precision(value, :precision => 2)
-          =key
-  .well
-    -products = {}
-    %h3 Vendido por producto
-    %ul.list-group
-      -@sales.each do |sale|
-        -sale.sale_lines.each do |sl|
-          -if sl.product
-            -if products[sl.product.name]
-              -products[sl.product.name] = products[sl.product.name] + 1
-            -else 
-              -products[sl.product.name] = 1
-      -products.each_pair do |key, value|
-        %li.list-group-item=raw("<b>" + key + "</b>: " + value.to_s)
+  %h3 Vendido el día de hoy
+  %ul.list-group
+    -@recetas.each_pair do |key, value|
+      %li.list-group-item
+        %span.badge=number_with_precision(value, :precision => 2)
+        =key
+  -products = {}
+
+  -@sales.each do |sale|
+    -sale.sale_lines.each do |sl|
+      -if sl.product
+        -if products[sl.product.name]
+          -products[sl.product.name] = products[sl.product.name] + sl.cantidad
+        -else 
+          -products[sl.product.name] = sl.cantidad
+
+  %h3 Vendido por producto
+  %ul.list-group
+    -products.each_pair do |key, value|
+      %li.list-group-item
+        %span.badge=value
+        =key
 
 
 
 
+=render 'shared/modal', :divid => "new_cancellation", :title => "Registrar Cancelación"

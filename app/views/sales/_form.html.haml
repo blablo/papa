@@ -2,6 +2,7 @@
 .row
   .col-sm-2.info_store
     %h1=@current_company.name
+    =raw(@current_company.rfc + '<br />') if !@current_company.rfc.blank?
     =@current_company.address
     %br
     =@current_company.phone

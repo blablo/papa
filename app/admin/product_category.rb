@@ -1,4 +1,5 @@
 ActiveAdmin.register ProductCategory do
+  actions :all, :except => [:destroy]
   controller do
     def scoped_collection
       current_user.company.product_categories

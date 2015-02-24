@@ -42,8 +42,16 @@ load_and_authorize_resource
       @sale.update_attribute(:orden, @orden)
 
       Pedido.create(:orden => @orden, :sale_id => @sale.id, :client_id => @sale.client_id, :company_id => current_company.id) if @sale.domicilio
-
+      
+      
       @sale.update_attribute(:total, @sale.sale_lines.sum(:valor))
+
+      if @sale.client and current_company.points_system
+        fidelity = Fidelity.find_or_create_by_client_id(@sale.client_id)
+        fidelity.update_attribute(:points, fidelity.points + current_company.points_rate * @sale.total)
+      end
+
+
       @sale.actualiza_inventario(:baja)
       respond_to :js
       #respond_to :html, redirect_to(new_sale_url, :notice => "¡Venta Registrada! ¡Tu muy bien! :)")

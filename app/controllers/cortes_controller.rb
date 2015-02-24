@@ -5,6 +5,7 @@ load_and_authorize_resource
   def index
     @cortes = current_company.cortes.order('created_at desc').limit(8)
     @sales = current_company.sales.no_corte
+    @cancellations = current_company.cancellations.no_corte
     @gastos = current_company.gastos.no_corte_caja
     @corte_anterior = current_company.cortes.last rescue nil
     @corte = current_company.cortes.new
@@ -38,6 +39,7 @@ load_and_authorize_resource
     @corte = current_company.cortes.find(params[:id])
     @sales = @corte.sales
     @gastos = @corte.gastos
+    @cancellations = @corte.cancellations
 
     @recetas = { }
 
@@ -83,6 +85,8 @@ load_and_authorize_resource
     @corte = current_company.cortes.new(params[:corte])
     @sales = current_company.sales.no_corte
     @gastos = current_company.gastos.no_corte_caja
+    @cancellations = current_company.cancellations.no_corte
+
 
     @corte.total_venta = @sales.sum(:total)
     @corte.total_gastos = @gastos.sum(:precio)
@@ -100,7 +104,9 @@ load_and_authorize_resource
         @gastos.each do |gasto|
           gasto.update_attribute(:corte_id, @corte.id)
         end
-
+        @cancellations.each do |can|
+          can.update_attribute(:corte_id, @corte.id)
+        end
         @corte.update_attribute(:principales, @corte.count_recetas.to_json)
         
         format.html { redirect_to @corte, notice: 'current_company.cortes was successfully created.' }
