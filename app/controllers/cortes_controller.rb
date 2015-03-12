@@ -41,6 +41,8 @@ load_and_authorize_resource
     @sales = @corte.sales
     @gastos = @corte.gastos
     @cancellations = @corte.cancellations
+    @wastes = @corte.wastes
+
 
     @recetas = { }
 
@@ -87,6 +89,7 @@ load_and_authorize_resource
     @sales = current_company.sales.no_corte
     @gastos = current_company.gastos.no_corte_caja
     @cancellations = current_company.cancellations.no_corte
+    @wastes = current_company.wastes.no_corte
 
 
     @corte.total_venta = @sales.sum(:total)
@@ -108,6 +111,11 @@ load_and_authorize_resource
         @cancellations.each do |can|
           can.update_attribute(:corte_id, @corte.id)
         end
+        @wastes.each do |waste|
+          waste.update_attribute(:corte_id, @corte.id)
+        end
+
+
         @corte.update_attribute(:principales, @corte.count_recetas.to_json)
         
         format.html { redirect_to @corte, notice: 'current_company.cortes was successfully created.' }
