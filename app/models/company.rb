@@ -17,6 +17,7 @@ class Company < ActiveRecord::Base
   has_many :sale_lines
   has_many :users
   has_many :cancellations
+  has_many :wastes
 
   mount_uploader :logo, AvatarUploader
 

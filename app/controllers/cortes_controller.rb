@@ -7,6 +7,7 @@ load_and_authorize_resource
     @sales = current_company.sales.no_corte
     @cancellations = current_company.cancellations.no_corte
     @gastos = current_company.gastos.no_corte_caja
+    @wastes = current_company.wastes.no_corte
     @corte_anterior = current_company.cortes.last rescue nil
     @corte = current_company.cortes.new
     @inventario = current_company.inventarios.all

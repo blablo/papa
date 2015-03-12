@@ -27,6 +27,14 @@
         %td=can.desc
         %td=number_to_currency(can.total)
 
+  %table.table
+    %tr
+      %th{:colspan => 2} Merma
+    -@wastes.each do |waste|
+      %tr
+        %td=waste.product.name
+        %td=waste.quantity
+
 
 .clearfix
 

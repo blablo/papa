@@ -4,6 +4,9 @@ class RecetaLine < ActiveRecord::Base
   belongs_to :product
   belongs_to :compra
   belongs_to :company
+
+  validates :cantidad, numericality: true, presence: true
+  validates :compra_id, presence: true
   
 end
 
