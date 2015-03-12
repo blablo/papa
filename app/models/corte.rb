@@ -3,6 +3,7 @@ class Corte < ActiveRecord::Base
   has_many :sales
   has_many :gastos
   has_many :cancellations
+  has_many :wastes
   belongs_to :company
 
 

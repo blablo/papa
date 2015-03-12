@@ -18,7 +18,7 @@ class WastesController < ApplicationController
   def create
     @waste = current_company.wastes.build(params[:waste])
     if @waste.save
-      redirect_to @waste, :notice => "Successfully created waste."
+      redirect_to new_waste_url, :notice => "Successfully created waste."
     else
       render :action => 'new'
     end
