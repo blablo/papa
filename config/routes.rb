@@ -25,6 +25,7 @@ end
   get '/balances/:year/:month', :to => "balances#show"
   get '/balances' => "balances#index"
 
+  resources :wastes
 
   resources :ventas
 

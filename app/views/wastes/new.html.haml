@@ -1,0 +1,20 @@
+%h1 Agregar Merma
+.well
+  =form_for @waste do |f|
+    .form-group
+      %label Producto
+      =f.select(:product_id, @products.map { |value| [ value.name, value.id ] }, selected: "United Kingdom")
+    .form-group
+      %label Cantidad
+      =f.text_field :quantity
+    =f.submit "Agregar"
+
+.well
+  %table.table
+    %tr
+      %th Producto
+      %th Cantidad
+    -@wastes.each do |waste|
+      %tr
+        %td=waste.product.name
+        %td=waste.quantity

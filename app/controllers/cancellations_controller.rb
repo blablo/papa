@@ -15,6 +15,7 @@ class CancellationsController < ApplicationController
     
     respond_to do |format|
       if @cancellation.save
+        @sale.actualiza_inventario(:sube)
         if current_company.points_system and @sale.client
           fidelity = Fidelity.find_or_create_by_client_id(@sale.client_id)
           
