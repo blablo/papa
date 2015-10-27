@@ -1,7 +1,8 @@
 class Waste < ActiveRecord::Base
   attr_accessible :corte_id, :product_id, :quantity
   belongs_to :product
-
+  belongs_to :corte
+  
   scope :no_corte, where(:corte_id => nil)
   
   validates :product_id, :presence => true
