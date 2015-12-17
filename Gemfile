@@ -35,7 +35,7 @@ gem "nifty-generators", :group => :development
 
 gem "mocha", :group => :test
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', require: false
 gem "nested_form"
 gem "ancestry"
 gem 'jquery-turbolinks'

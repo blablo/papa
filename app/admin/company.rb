@@ -5,7 +5,16 @@ ActiveAdmin.register Company do
 
   controller do
 
+    def create(options={}, &block)
+      if current_user.company.nil?
+        params[:company][:user_id] = current_user.id
+        super
+      else
+        redirect_to admin_companies_url
+      end
+    end
 
+    
     def scoped_collection
       Company.where(id: current_user.company_id)
     end
