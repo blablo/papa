@@ -1,5 +1,16 @@
 ActiveAdmin.register ProductCategory do
   actions :all, :except => [:destroy]
+
+  index do
+    column "Imagen" do |image|
+      image_tag image.avatar.url(:thumb)
+    end
+    column :name
+
+    default_actions
+  end
+
+  
   controller do
     def scoped_collection
       current_user.company.product_categories

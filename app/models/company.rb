@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  attr_accessible :logo, :name, :rfc, :address, :webpage, :phone, :ticket_copies, :points_system, :points_rate
+  attr_accessible :logo, :name, :rfc, :address, :webpage, :phone, :ticket_copies, :points_system, :points_rate, :user_id
 
   has_many :clients
   has_many :compras
@@ -19,6 +19,19 @@ class Company < ActiveRecord::Base
   has_many :cancellations
   has_many :wastes
 
+  after_save :link_user
+  
   mount_uploader :logo, AvatarUploader
 
+  attr_accessor :user_id
+
+  def link_user
+    if self.user_id
+      user = User.find(self.user_id)
+      user.company_id = self.id
+      user.roles << Role.find_by_name("admin")
+      user.save
+    end
+  end
+  
 end
