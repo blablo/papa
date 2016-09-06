@@ -1,5 +1,20 @@
 ActiveAdmin.register Waste do
 #  filter :corte_fecha, :as => :date
+
+
+  controller do
+    def scoped_collection
+      current_user.company.wastes
+    end
+    def update
+      params[:waste].merge!({ company_id: current_user.company_id })
+      update!
+    end
+    def create
+      params[:waste].merge!({ company_id: current_user.company_id })
+      create!
+    end
+  end
   
   index do
     

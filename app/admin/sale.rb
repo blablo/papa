@@ -1,4 +1,9 @@
 ActiveAdmin.register Sale do
+  filter :client
+  filter :por_pagar
+  filter :domicilio
+  filter :orden
+  
   controller do
 
     def scoped_collection
