@@ -57,7 +57,7 @@ load_and_authorize_resource
       #respond_to :html, redirect_to(new_sale_url, :notice => "¡Venta Registrada! ¡Tu muy bien! :)")
 
     else
-
+      @pedidos = current_company.pedidos.all
       render js: "alert('" + @sale.errors.full_messages[0] + "');"
 #      render :action => 'new'
     end

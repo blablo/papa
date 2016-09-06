@@ -5,7 +5,7 @@
 -if !@pedidos.empty?
   .row.hidden-print
     .col-xs-12
-      -Pedido.all.each do |pedido|
+      -@pedidos.each do |pedido|
         -contenido = ""
         -contenido += pedido.sale.sale_lines.inject(''){|sum, sl| sum + sl.cantidad.to_s  +  " " + (sl.product ? sl.product.name : '') + ", "} + "<br />"
         -contenido += number_to_currency(pedido.sale.total)
