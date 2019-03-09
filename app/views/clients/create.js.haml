@@ -1,0 +1,3 @@
+$("#new_cliente").modal("hide");
+$("#client_id").val("#{@client.id}")
+$(".cliente").html("#{escape_javascript(render 'clients/show', :client => @client)}");

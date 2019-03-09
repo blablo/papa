@@ -2,6 +2,17 @@
   $("#new_cliente").modal("hide");
   $("#client_id").val("#{@client.id}")
   $(".cliente").html("#{escape_javascript(render 'clients/show', :client => @client)}");
+  
+  $("#new_cliente .modal-body").html("#{escape_javascript(render 'clients/form')}");
+  initialize();
+  $("#new_cliente").modal("show");
+  google.maps.event.trigger(map, "resize");
+  $('#client_street').change(function() {
+  getAddress();
+  });
+  $('#client_district').change(function() {
+  getAddress();
+  });
 
 
 -else

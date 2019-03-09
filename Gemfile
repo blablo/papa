@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem 'mysql2'
+gem 'mysql2', '0.3.15'
+#gem 'activerecord-mysql2-adapter'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -19,9 +20,9 @@ gem "cucumber-rails", ">= 1.3.1", :group => :test, :require => false
 gem "launchy", ">= 2.2.0", :group => :test
 gem "capybara", ">= 2.0.3", :group => :test
 gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
-gem "bootstrap-sass", ">= 2.3.0.0"
-gem "devise", ">= 2.2.3"
-gem "cancan", ">= 1.6.9"
+gem "bootstrap-sass", "3.1.1.0"
+gem "devise", "3.2.3"
+gem "cancan", "1.6.10"
 gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.1.0"
 gem "quiet_assets", ">= 1.0.2", :group => :development
@@ -40,5 +41,5 @@ gem "nested_form"
 gem "ancestry"
 gem 'jquery-turbolinks'
 
-gem 'activeadmin', github: "gregbell/active_admin"		 
+gem 'activeadmin' #, github: "gregbell/active_admin"
 gem "byebug", :group => [:development]

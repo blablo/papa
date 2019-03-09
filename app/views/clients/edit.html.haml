@@ -1,8 +1,8 @@
-- title "Edit Client"
+%h1 Editar Cliente
+#errors.alert
+#edit_client
+  = render 'form'
 
-= render 'form'
+%button.btn.btn-primary{:type => "button", :onclick => "$('#edit_client form').submit();"} Guardar
 
-%p
-  = link_to "Show", @client
-  |
-  = link_to "View All", clients_path
+

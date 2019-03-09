@@ -4,7 +4,10 @@
       .form-group
         =f.label "Tel", :class => "control-label col-xs-3"
         .col-xs-9
-          =f.text_field :phone, :value => params[:phone], :class => "form-control"
+          -if params[:phone].present?
+            =f.text_field :phone, :value => params[:phone], :class => "form-control"
+          -else
+            =f.text_field :phone, :class => "form-control"
       .form-group
         =f.label "Calle", :class => "control-label col-xs-3"
         .col-xs-9

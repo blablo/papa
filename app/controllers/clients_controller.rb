@@ -15,7 +15,7 @@ class ClientsController < ApplicationController
     @client = current_company.clients.build(params[:client])
     if @client.save
       #redirect_to @client, :notice => "Successfully created client."
-      render 'search'
+      render 'create'
     else
       render :action => 'new'
     end
@@ -38,9 +38,9 @@ class ClientsController < ApplicationController
   def update
     @client = current_company.clients.find(params[:id])
     if @client.update_attributes(params[:client])
-      redirect_to @client, :notice  => "Successfully updated client."
+      render 'create'
     else
-      render :action => 'edit'
+      render :js => "$('#errors').html(\"#{@client.errors.full_messages.first}\");"
     end
   end
 
