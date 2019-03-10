@@ -12,7 +12,8 @@ load_and_authorize_resource
     @corte = current_company.cortes.new
     @inventario = current_company.inventarios.all
     @recetas = { }
-
+    @corte.fecha = Time.now
+    
     @sales.each do |sale|
       sale.sale_lines.each do |line|
         if line.product and line.product.receta
