@@ -1,116 +1,125 @@
-#menu_list{
-    display: none;
+#menu_list {
+  display: none;
 }
 
-.navbar, .modal, .alert{
-    display: none;
+.navbar,
+.modal,
+.alert {
+  display: none;
 }
 
-#numpad, .nav, body #pago_modal{
-    display: none;
+#numpad,
+.nav,
+body #pago_modal {
+  display: none;
 }
 
+h1 {
+  font-size: 1.4em;
+  margin: 0;
+  font-weight: bold;
+  line-height: 1em;
+}
 
-h1{
-    font-size: 1.4em;
+.fields .p_name,
+.fields .cantidad {
+  font-size: 1.3em;
+  line-height: 1.4em;
+}
+.sale_head,
+.fields {
+  font-size: 1em;
+  line-height: 1.4em;
+  overflow: auto;
+  .col-xs-2 {
+    width: 60px;
+    float: left;
     margin: 0;
-    font-weight: bold;
-    line-height: 1em;
-}
-
-.fields .p_name, .fields .cantidad{
-    font-size: 2em;
-    line-height: 1.4em;
-}
-.sale_head, .fields{
-    font-size: 1em;
-    line-height: 1.4em;
-    overflow: auto;
-    .col-xs-2{
-	width: 60px;
-	float: left;
-	margin: 0;
-    }
-    .col-xs-1{
-	width: 50px;
-	float: left;
-	text-align: left;
-	margin: 0;
-    }
-    .col-xs-2.p_name{
-	margin: 0;
-	width: 80%;
-    }
-    .col-xs-2.cantidad{
-	width: 20%;
-	float: left;
-    }
-    .col-xs-2.valor{
-	width: 50%;
-	float: left;
-    }
-    .col-xs-2.precio{
-	width: 50%;
-	float: left;
-    }
-    .remove{
-	display: none
-    }
-}
-
-.cliente_search{
-    display: none;
-}
-
-.print_map{
-    margin: 3px 0;
-    display: block;
-}
-
-#sale_list{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: auto;
-    width: 300px;
-    border: none;
-    .fields{
-	padding: 0;
-    }
-}
-
-.total, .p_paga, .p_cambio{
-    font-size: 1.3em;
-    line-height: 1.2em;
+  }
+  .col-xs-1 {
+    width: 50px;
+    float: left;
+    text-align: left;
     margin: 0;
-}
-
-.info_store{
-    display: block;
-    font-size: 0.6em;
-    line-height: 1.2em;
-    text-align: center;
-}
-
-.cliente{
+  }
+  .col-xs-2.p_name {
+    margin: 0;
+    width: 80%;
+  }
+  .col-xs-2.cantidad {
+    width: 20%;
+    float: left;
+  }
+  .col-xs-2.valor {
+    width: 50%;
+    float: left;
+  }
+  .col-xs-2.precio {
+    width: 50%;
+    float: left;
+  }
+  .remove {
     display: none;
-    font-size: 1.6em;
-    margin-top: 20px;
+  }
 }
 
-.p_paga, .p_cambio, .cliente.p_cliente{
-    display: block;
+.cliente_search {
+  display: none;
 }
 
-#sale_nota{
-    margin-top: 0.5em;
-    font-size: 0.7em;
-    line-height: 1em;
+.print_map {
+  margin: 3px 0;
+  display: none;
 }
 
-.sale_num{
-    font-size: 20px;
+#sale_list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: auto;
+  width: 300px;
+  border: none;
+  .fields {
+    padding: 0;
+  }
 }
 
-.hidden-print{
-    display: none;
+.total,
+.p_paga,
+.p_cambio {
+  font-size: 1.3em;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+.info_store {
+  display: block;
+  font-size: 0.8em;
+  line-height: 1.2em;
+  text-align: center;
+}
+
+.cliente {
+  display: none;
+  font-size: 1.6em;
+  margin-top: 20px;
+}
+
+.p_paga,
+.p_cambio,
+.cliente.p_cliente {
+  display: block;
+}
+
+#sale_nota {
+  margin-top: 0.5em;
+  font-size: 0.7em;
+  line-height: 1em;
+}
+
+.sale_num {
+  font-size: 20px;
+}
+
+.hidden-print {
+  display: none;
 }
