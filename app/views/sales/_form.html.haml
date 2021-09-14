@@ -7,12 +7,11 @@
     %br
     =@current_company.phone
     =@current_company.webpage
-    %br
-    %br
-    Recibo de Venta
-    %br
-    -Time.zone = 'America/Mexico_City' 
-    =Time.zone.now.strftime("%d/%m/%Y %H:%M")
+    .recibo_venta
+      %span Recibo de Venta
+      %br
+      -Time.zone = 'America/Mexico_City' 
+      %span.hora=Time.zone.now.strftime("%d/%m/%Y %H:%M")
 
   .col-sm-3.cliente_search
     =form_for(Client.new, :url => search_clients_path, :remote => true) do |f|
