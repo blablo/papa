@@ -20,7 +20,13 @@ h1 {
   font-weight: bold;
   line-height: 1em;
 }
-
+.recibo_venta {
+  text-align: right;
+  font-size: 12px;
+  .hora {
+    font-size: 18px;
+  }
+}
 .sale_head {
   display: none;
 }
