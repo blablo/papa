@@ -6,12 +6,12 @@
     =@current_company.address
     %br
     =@current_company.phone
-    %br
     =@current_company.webpage
     %br
     %br
     Recibo de Venta
     %br
+    -Time.zone = 'America/Mexico_City' 
     =Time.now.strftime("%d/%m/%Y %H:%M")
 
   .col-sm-3.cliente_search
